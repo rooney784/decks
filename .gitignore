@@ -1,0 +1,71 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Chrome extension artifacts
+automa-extension/
+automa.zip
+*.crx
+# Airflow local metadata DB
+airflow.db
+*.db
+# Ignore entire database folder
+postgres_data/
+
+# Log files
+*.log
+/tmp/*.log
+logs/
+
+# Environment files
+.env
+.env.local
+
+# Build artifacts
+dist/
+build/
+out/
+coverage/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Chrome user data
+chrome-profile/
+chrome-data/
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Docker artifacts
+.dockerignore
+Dockerfile.bak
+
+# Sensitive data
+secrets.ini
+*.key
+*.pem
+
+# Visual testing artifacts
+*.png
+*.jpg
+*.jpeg
+screenshots/
+
+# Puppeteer artifacts
+puppeteer-profile/
+
+# OS generated files
+ehthumbs.db
+Thumbs.db
+Desktop.ini

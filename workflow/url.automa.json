@@ -1,0 +1,152 @@
+{
+  "extVersion": "1.29.10",
+  "name": "url",
+  "icon": "riGlobalLine",
+  "table": [],
+  "version": "1.29.10",
+  "id": "workflow-12345678-1234-1234-1234-123456789abc",
+  "drawflow": {
+    "nodes": [
+      {
+        "id": "cAS0vicP-GKfSbzBe-sTD",
+        "type": "BlockBasic",
+        "initialized": false,
+        "position": { "x": 80, "y": 139.26923076923077 },
+        "data": {
+          "disableBlock": false,
+          "description": "",
+          "type": "manual",
+          "interval": 60,
+          "delay": 5,
+          "date": "",
+          "time": "00:00",
+          "url": "",
+          "shortcut": "",
+          "activeInInput": false,
+          "isUrlRegex": false,
+          "days": [],
+          "contextMenuName": "",
+          "contextTypes": [],
+          "parameters": [],
+          "preferParamsInTab": false,
+          "observeElement": {
+            "selector": "",
+            "baseSelector": "",
+            "matchPattern": "",
+            "targetOptions": {
+              "subtree": false,
+              "childList": true,
+              "attributes": false,
+              "attributeFilter": [],
+              "characterData": false
+            },
+            "baseElOptions": {
+              "subtree": false,
+              "childList": true,
+              "attributes": false,
+              "attributeFilter": [],
+              "characterData": false
+            }
+          }
+        },
+        "label": "trigger"
+      },
+      {
+        "id": "38b0bey",
+        "type": "BlockGroup",
+        "initialized": false,
+        "position": { "x": 383.8461538461538, "y": 101.53846153846152 },
+        "data": {
+          "disableBlock": false,
+          "name": "",
+          "blocks": [
+            {
+              "id": "new-tab",
+              "data": {
+                "disableBlock": false,
+                "description": "",
+                "url": "https://x.com/queenHaley___/with_replies",
+                "userAgent": "",
+                "active": true,
+                "tabZoom": 1,
+                "inGroup": false,
+                "waitTabLoaded": false,
+                "updatePrevTab": false,
+                "customUserAgent": false
+              },
+              "itemId": "Un9L_"
+            },
+            {
+              "id": "press-key",
+              "data": {
+                "disableBlock": false,
+                "description": "",
+                "keys": "MESSAGE_PLACEHOLDER",
+                "selector": "",
+                "pressTime": "3000",
+                "keysToPress": "",
+                "action": "press-key",
+                "onError": {
+                  "retry": false,
+                  "enable": true,
+                  "retryTimes": 1,
+                  "retryInterval": 2,
+                  "toDo": "continue",
+                  "insertData": false,
+                  "dataToInsert": []
+                },
+                "settings": {
+                  "blockTimeout": 0,
+                  "debugMode": false
+                }
+              },
+              "itemId": "MSG_01"
+            }
+          ]
+        },
+        "label": "blocks-group"
+      }
+    ],
+    "edges": [
+      {
+        "id": "vueflow__edge-cAS0vicP-GKfSbzBe-sTDcAS0vicP-GKfSbzBe-sTD-output-1-38b0bey38b0bey-input-1",
+        "type": "custom",
+        "source": "cAS0vicP-GKfSbzBe-sTD",
+        "target": "38b0bey",
+        "sourceHandle": "cAS0vicP-GKfSbzBe-sTD-output-1",
+        "targetHandle": "38b0bey-input-1",
+        "updatable": true,
+        "selectable": true,
+        "data": {},
+        "label": "",
+        "markerEnd": "arrowclosed",
+        "class": "connected-edges",
+        "sourceX": 296,
+        "sourceY": 175.26924954927884,
+        "targetX": 359.84614445612976,
+        "targetY": 198.20512507512018
+      }
+    ],
+    "position": [-208, -17],
+    "zoom": 1.3,
+    "viewport": { "x": -208, "y": -17, "zoom": 1.3 }
+  },
+  "settings": {
+    "publicId": "",
+    "blockDelay": 0,
+    "saveLog": true,
+    "debugMode": false,
+    "restartTimes": 3,
+    "notification": true,
+    "execContext": "popup",
+    "reuseLastState": false,
+    "inputAutocomplete": true,
+    "onError": "stop-workflow",
+    "executedBlockOnWeb": false,
+    "insertDefaultColumn": false,
+    "defaultColumnName": "column"
+  },
+  "globalData": "{\n\t\"key\": \"value\"\n}",
+  "description": "",
+  "includedWorkflows": {}
+}

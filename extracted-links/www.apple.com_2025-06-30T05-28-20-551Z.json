@@ -1,0 +1,2080 @@
+{
+  "pageUrl": "https://www.apple.com/in/privacy/?cid=wwa-in-soc-iphn-prvy6-socl-twit-skvf-tmln-cpv-aos-dsk-apct-gnt-broa-prvlp-ufnnl-inen-pkboo-video-11ar-15s-hxvi-prvcy-na-lem-na-na-na-05680603",
+  "pageTitle": "Privacy - Apple (IN)",
+  "domain": "www.apple.com",
+  "timestamp": "2025-06-30T05:28:20.551Z",
+  "links": [
+    {
+      "index": 1,
+      "url": "https://www.apple.com/in/",
+      "text": "Apple",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 2,
+      "url": "https://www.apple.com/in/shop/goto/store",
+      "text": "Store",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 3,
+      "url": "https://www.apple.com/in/shop/goto/store",
+      "text": "Shop the Latest",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 4,
+      "url": "https://www.apple.com/in/shop/goto/buy_mac",
+      "text": "Mac",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 5,
+      "url": "https://www.apple.com/in/shop/goto/buy_ipad",
+      "text": "iPad",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 6,
+      "url": "https://www.apple.com/in/shop/goto/buy_iphone",
+      "text": "iPhone",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 7,
+      "url": "https://www.apple.com/in/shop/goto/buy_watch",
+      "text": "Apple Watch",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 8,
+      "url": "https://www.apple.com/in/shop/goto/buy_accessories",
+      "text": "Accessories",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 9,
+      "url": "https://www.apple.com/in/retail/",
+      "text": "Find a Store",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 10,
+      "url": "https://www.apple.com/in/shop/goto/order/list",
+      "text": "Order Status",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 11,
+      "url": "https://www.apple.com/in/shop/goto/ways_to_buy",
+      "text": "Ways to Buy",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 12,
+      "url": "https://www.apple.com/in/shop/goto/personal_setup",
+      "text": "Personal Setup",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 13,
+      "url": "https://www.apple.com/in/shop/goto/edu_store",
+      "text": "College Student Offer",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 14,
+      "url": "https://www.apple.com/in/shop/goto/educationrouting",
+      "text": "Education",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 15,
+      "url": "https://www.apple.com/in/retail/business/",
+      "text": "Business",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 16,
+      "url": "https://www.apple.com/in/mac/",
+      "text": "Mac",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 17,
+      "url": "https://www.apple.com/in/mac/",
+      "text": "Explore All Mac",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 18,
+      "url": "https://www.apple.com/in/macbook-air/",
+      "text": "MacBook Air",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 19,
+      "url": "https://www.apple.com/in/macbook-pro/",
+      "text": "MacBook Pro",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 20,
+      "url": "https://www.apple.com/in/imac/",
+      "text": "iMac",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 21,
+      "url": "https://www.apple.com/in/mac-mini/",
+      "text": "Mac mini",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 22,
+      "url": "https://www.apple.com/in/mac-studio/",
+      "text": "Mac Studio",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 23,
+      "url": "https://www.apple.com/in/mac-pro/",
+      "text": "Mac Pro",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 24,
+      "url": "https://www.apple.com/in/displays/",
+      "text": "Displays",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 25,
+      "url": "https://www.apple.com/in/mac/compare/",
+      "text": "Compare Mac",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 26,
+      "url": "https://www.apple.com/in/mac/mac-does-that/",
+      "text": "Switch from PC to Mac",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 27,
+      "url": "https://www.apple.com/in/shop/goto/buy_mac",
+      "text": "Shop Mac",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 28,
+      "url": "https://www.apple.com/in/shop/goto/mac/accessories",
+      "text": "Mac Accessories",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 29,
+      "url": "https://www.apple.com/in/shop/goto/ways_to_buy",
+      "text": "Ways to Buy",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 30,
+      "url": "https://www.apple.com/in/shop/goto/edu_store",
+      "text": "College Student Offer",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 31,
+      "url": "https://support.apple.com/en-in/mac?cid=gn-ols-mac-psp-prodfly",
+      "text": "Mac Support",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 32,
+      "url": "https://www.apple.com/in/support/products/mac/",
+      "text": "AppleCare+ for Mac",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 33,
+      "url": "https://www.apple.com/in/macos/macos-sequoia/",
+      "text": "macOS Sequoia",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 34,
+      "url": "https://www.apple.com/in/apple-intelligence/",
+      "text": "Apple Intelligence",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 35,
+      "url": "https://www.apple.com/in/apps/",
+      "text": "Apps by Apple",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 36,
+      "url": "https://www.apple.com/in/macos/continuity/",
+      "text": "Continuity",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 37,
+      "url": "https://www.apple.com/in/icloud/",
+      "text": "iCloud+",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 38,
+      "url": "https://www.apple.com/in/business/mac/",
+      "text": "Mac for Business",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 39,
+      "url": "https://www.apple.com/in/education/",
+      "text": "Education",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 40,
+      "url": "https://www.apple.com/in/ipad/",
+      "text": "iPad",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 41,
+      "url": "https://www.apple.com/in/ipad/",
+      "text": "Explore All iPad",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 42,
+      "url": "https://www.apple.com/in/ipad-pro/",
+      "text": "iPad Pro",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 43,
+      "url": "https://www.apple.com/in/ipad-air/",
+      "text": "iPad Air",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 44,
+      "url": "https://www.apple.com/in/ipad-11/",
+      "text": "iPad",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 45,
+      "url": "https://www.apple.com/in/ipad-mini/",
+      "text": "iPad mini",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 46,
+      "url": "https://www.apple.com/in/apple-pencil/",
+      "text": "Apple Pencil",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 47,
+      "url": "https://www.apple.com/in/ipad-keyboards/",
+      "text": "Keyboards",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 48,
+      "url": "https://www.apple.com/in/ipad/compare/",
+      "text": "Compare iPad",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 49,
+      "url": "https://www.apple.com/in/ipad/why-ipad/",
+      "text": "Why iPad",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 50,
+      "url": "https://www.apple.com/in/shop/goto/buy_ipad",
+      "text": "Shop iPad",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 51,
+      "url": "https://www.apple.com/in/shop/goto/ipad/accessories",
+      "text": "iPad Accessories",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 52,
+      "url": "https://www.apple.com/in/shop/goto/ways_to_buy",
+      "text": "Ways to Buy",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 53,
+      "url": "https://www.apple.com/in/shop/goto/edu_store",
+      "text": "College Student Offer",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 54,
+      "url": "https://support.apple.com/en-in/ipad?cid=gn-ols-ipad-psp-prodfly",
+      "text": "iPad Support",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 55,
+      "url": "https://www.apple.com/in/support/products/ipad/",
+      "text": "AppleCare+ for iPad",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 56,
+      "url": "https://www.apple.com/in/ipados/ipados-18/",
+      "text": "iPadOS 18",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 57,
+      "url": "https://www.apple.com/in/apple-intelligence/",
+      "text": "Apple Intelligence",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 58,
+      "url": "https://www.apple.com/in/apps/",
+      "text": "Apps by Apple",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 59,
+      "url": "https://www.apple.com/in/icloud/",
+      "text": "iCloud+",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 60,
+      "url": "https://www.apple.com/in/education/",
+      "text": "Education",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 61,
+      "url": "https://www.apple.com/in/iphone/",
+      "text": "iPhone",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 62,
+      "url": "https://www.apple.com/in/iphone/",
+      "text": "Explore All iPhone",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 63,
+      "url": "https://www.apple.com/in/iphone-16-pro/",
+      "text": "iPhone 16 Pro",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 64,
+      "url": "https://www.apple.com/in/iphone-16/",
+      "text": "iPhone 16",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 65,
+      "url": "https://www.apple.com/in/iphone-16e/",
+      "text": "iPhone 16e",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 66,
+      "url": "https://www.apple.com/in/shop/goto/buy_iphone/iphone_15",
+      "text": "iPhone 15",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 67,
+      "url": "https://www.apple.com/in/iphone/compare/",
+      "text": "Compare iPhone",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 68,
+      "url": "https://www.apple.com/in/iphone/switch/",
+      "text": "Switch from Android",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 69,
+      "url": "https://www.apple.com/in/shop/goto/buy_iphone",
+      "text": "Shop iPhone",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 70,
+      "url": "https://www.apple.com/in/shop/goto/iphone/accessories",
+      "text": "iPhone Accessories",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 71,
+      "url": "https://www.apple.com/in/shop/goto/trade_in",
+      "text": "Apple Trade In",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 72,
+      "url": "https://www.apple.com/in/shop/goto/ways_to_buy",
+      "text": "Ways to Buy",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 73,
+      "url": "https://support.apple.com/en-in/iphone?cid=gn-ols-iphone-psp-prodfly",
+      "text": "iPhone Support",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 74,
+      "url": "https://www.apple.com/in/support/products/iphone/",
+      "text": "AppleCare+ for iPhone",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 75,
+      "url": "https://www.apple.com/in/ios/ios-18/",
+      "text": "iOS 18",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 76,
+      "url": "https://www.apple.com/in/apple-intelligence/",
+      "text": "Apple Intelligence",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 77,
+      "url": "https://www.apple.com/in/apps/",
+      "text": "Apps by Apple",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 78,
+      "url": "https://www.apple.com/in/privacy/",
+      "text": "iPhone Privacy",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 79,
+      "url": "https://www.apple.com/in/icloud/",
+      "text": "iCloud+",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 80,
+      "url": "https://www.apple.com/in/wallet/",
+      "text": "Wallet",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 81,
+      "url": "https://www.apple.com/in/siri/",
+      "text": "Siri",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 82,
+      "url": "https://www.apple.com/in/watch/",
+      "text": "Watch",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 83,
+      "url": "https://www.apple.com/in/watch/",
+      "text": "Explore All Apple Watch",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 84,
+      "url": "https://www.apple.com/in/apple-watch-series-10/",
+      "text": "Apple Watch Series 10",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 85,
+      "url": "https://www.apple.com/in/apple-watch-ultra-2/",
+      "text": "Apple Watch Ultra 2",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 86,
+      "url": "https://www.apple.com/in/apple-watch-se/",
+      "text": "Apple Watch SE",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 87,
+      "url": "https://www.apple.com/in/apple-watch-nike/",
+      "text": "Apple Watch Nike",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 88,
+      "url": "https://www.apple.com/in/watch/compare/",
+      "text": "Compare Watch",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 89,
+      "url": "https://www.apple.com/in/watch/why-apple-watch/",
+      "text": "Why Apple Watch",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 90,
+      "url": "https://www.apple.com/in/shop/goto/buy_watch",
+      "text": "Shop Apple Watch",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 91,
+      "url": "https://www.apple.com/in/shop/goto/watch/bands",
+      "text": "Apple Watch Straps",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 92,
+      "url": "https://www.apple.com/in/shop/goto/watch/accessories",
+      "text": "Apple Watch Accessories",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 93,
+      "url": "https://www.apple.com/in/shop/goto/ways_to_buy",
+      "text": "Ways to Buy",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 94,
+      "url": "https://support.apple.com/en-in/watch?cid=gn-ols-watch-psp-prodfly",
+      "text": "Apple Watch Support",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 95,
+      "url": "https://www.apple.com/in/support/products/watch/",
+      "text": "AppleCare+",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 96,
+      "url": "https://www.apple.com/in/watchos/watchos-11/",
+      "text": "watchOS 11",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 97,
+      "url": "https://www.apple.com/in/apple-watch-for-your-kids/",
+      "text": "Apple Watch For Your Kids",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 98,
+      "url": "https://www.apple.com/in/apps/",
+      "text": "Apps by Apple",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 99,
+      "url": "https://www.apple.com/in/airpods/",
+      "text": "AirPods",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 100,
+      "url": "https://www.apple.com/in/airpods/",
+      "text": "Explore All AirPods",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 101,
+      "url": "https://www.apple.com/in/airpods-4/",
+      "text": "AirPods 4",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 102,
+      "url": "https://www.apple.com/in/airpods-pro/",
+      "text": "AirPods Pro 2",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 103,
+      "url": "https://www.apple.com/in/airpods-max/",
+      "text": "AirPods Max",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 104,
+      "url": "https://www.apple.com/in/airpods/compare/",
+      "text": "Compare AirPods",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 105,
+      "url": "https://www.apple.com/in/shop/goto/accessories/all_accessories/headphones_speakers?fh=47d1%2B3214%2B45aa%2B45ab&f=apple-overear-sport&page=1",
+      "text": "Shop AirPods",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 106,
+      "url": "https://www.apple.com/in/shop/goto/accessories/all_accessories/headphones_speakers?fh=47d1%2Be62115&f=headphoneacc&page=1",
+      "text": "AirPods Accessories",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 107,
+      "url": "https://support.apple.com/en-in/airpods?cid=gn-ols-airpods-psp-prodfly",
+      "text": "AirPods Support",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 108,
+      "url": "https://www.apple.com/in/support/products/headphones/",
+      "text": "AppleCare+ for Headphones",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 109,
+      "url": "https://www.apple.com/in/apple-music/",
+      "text": "Apple Music",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 110,
+      "url": "https://www.apple.com/in/tv-home/",
+      "text": "TV & Home",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 111,
+      "url": "https://www.apple.com/in/tv-home/",
+      "text": "Explore TV & Home",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 112,
+      "url": "https://www.apple.com/in/apple-tv-4k/",
+      "text": "Apple TV 4K",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 113,
+      "url": "https://www.apple.com/in/homepod-2nd-generation/",
+      "text": "HomePod",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 114,
+      "url": "https://www.apple.com/in/homepod-mini/",
+      "text": "HomePod mini",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 115,
+      "url": "https://www.apple.com/in/shop/goto/buy_tv/apple_tv_4k",
+      "text": "Shop Apple TV 4K",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 116,
+      "url": "https://www.apple.com/in/shop/goto/buy_homepod/homepod",
+      "text": "Shop HomePod",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 117,
+      "url": "https://www.apple.com/in/shop/goto/buy_homepod/homepod_mini",
+      "text": "Shop HomePod mini",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 118,
+      "url": "https://www.apple.com/in/shop/goto/product/MW5G3",
+      "text": "Shop Siri Remote",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 119,
+      "url": "https://www.apple.com/in/shop/goto/smart_home/accessories",
+      "text": "TV & Home Accessories",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 120,
+      "url": "https://support.apple.com/en-in/apple-tv?cid=gn-ols-appletv-psp-prodfly",
+      "text": "Apple TV Support",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 121,
+      "url": "https://support.apple.com/en-in/homepod?cid=gn-ols-homepod-psp-prodfly",
+      "text": "HomePod Support",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 122,
+      "url": "https://www.apple.com/in/support/products/",
+      "text": "AppleCare+",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 123,
+      "url": "https://www.apple.com/in/apple-tv-app/",
+      "text": "Apple TV app",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 124,
+      "url": "https://www.apple.com/in/apple-tv-plus/",
+      "text": "Apple TV+",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 125,
+      "url": "https://www.apple.com/in/home-app/",
+      "text": "Home app",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 126,
+      "url": "https://www.apple.com/in/apple-music/",
+      "text": "Apple Music",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 127,
+      "url": "https://www.apple.com/in/siri/",
+      "text": "Siri",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 128,
+      "url": "https://www.apple.com/in/airplay/",
+      "text": "AirPlay",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 129,
+      "url": "https://www.apple.com/in/entertainment/",
+      "text": "Entertainment",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 130,
+      "url": "https://www.apple.com/in/services/",
+      "text": "Explore Entertainment",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 131,
+      "url": "https://www.apple.com/in/apple-one/",
+      "text": "Apple One",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 132,
+      "url": "https://www.apple.com/in/apple-tv-plus/",
+      "text": "Apple TV+",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 133,
+      "url": "https://www.apple.com/in/apple-music/",
+      "text": "Apple Music",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 134,
+      "url": "https://www.apple.com/in/apple-arcade/",
+      "text": "Apple Arcade",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 135,
+      "url": "https://www.apple.com/in/apple-podcasts/",
+      "text": "Apple Podcasts",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 136,
+      "url": "https://www.apple.com/in/apple-books/",
+      "text": "Apple Books",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 137,
+      "url": "https://www.apple.com/in/app-store/",
+      "text": "App Store",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 138,
+      "url": "https://support.apple.com/en-in/tv?cid=gn-ols-tvplus-psp-prodfly",
+      "text": "Apple TV+ Support",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 139,
+      "url": "https://support.apple.com/en-in/music?cid=gn-ols-music-psp-prodfly",
+      "text": "Apple Music Support",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 140,
+      "url": "https://www.apple.com/in/shop/goto/buy_accessories",
+      "text": "Accessories",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 141,
+      "url": "https://www.apple.com/in/shop/goto/buy_accessories",
+      "text": "Shop All Accessories",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 142,
+      "url": "https://www.apple.com/in/shop/goto/mac/accessories",
+      "text": "Mac",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 143,
+      "url": "https://www.apple.com/in/shop/goto/ipad/accessories",
+      "text": "iPad",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 144,
+      "url": "https://www.apple.com/in/shop/goto/iphone/accessories",
+      "text": "iPhone",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 145,
+      "url": "https://www.apple.com/in/shop/goto/watch/accessories",
+      "text": "Apple Watch",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 146,
+      "url": "https://www.apple.com/in/shop/goto/accessories/all_accessories/headphones_speakers?fh=47d1%2B3214%2B45aa%2B45ab&f=apple-overear-sport&page=1",
+      "text": "AirPods",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 147,
+      "url": "https://www.apple.com/in/shop/goto/smart_home/accessories",
+      "text": "TV & Home",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 148,
+      "url": "https://www.apple.com/in/shop/goto/accessories/all_accessories/made_by_apple",
+      "text": "Made by Apple",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 149,
+      "url": "https://www.apple.com/in/shop/goto/accessories/all_accessories/beats_featured",
+      "text": "Beats by Dr. Dre",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 150,
+      "url": "https://www.apple.com/in/airtag/",
+      "text": "AirTag",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 151,
+      "url": "https://support.apple.com/en-in/?cid=gn-ols-home-hp-tab",
+      "text": "Support",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 152,
+      "url": "https://support.apple.com/en-in/iphone?cid=gn-ols-iphone-psp-explore",
+      "text": "iPhone",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 153,
+      "url": "https://support.apple.com/en-in/mac?cid=gn-ols-mac-psp-explore",
+      "text": "Mac",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 154,
+      "url": "https://support.apple.com/en-in/ipad?cid=gn-ols-ipad-psp-explore",
+      "text": "iPad",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 155,
+      "url": "https://support.apple.com/en-in/watch?cid=gn-ols-watch-psp-explore",
+      "text": "Watch",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 156,
+      "url": "https://support.apple.com/en-in/airpods?cid=gn-ols-airpods-psp-explore",
+      "text": "AirPods",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 157,
+      "url": "https://support.apple.com/en-in/music?cid=gn-ols-music-psp-explore",
+      "text": "Music",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 158,
+      "url": "https://support.apple.com/en-in/tv?cid=gn-ols-tv-psp-explore",
+      "text": "TV",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 159,
+      "url": "https://support.apple.com/en-in/?cid=gn-ols-home-hp-explore",
+      "text": "Explore Support",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 160,
+      "url": "https://discussions.apple.com/welcome?cid=gn-com-community-lp-get_help",
+      "text": "Community",
+      "isExternal": true,
+      "domain": "discussions.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 161,
+      "url": "https://checkcoverage.apple.com/in/en?cid=gn-ols-checkcoverage-lp-get_help",
+      "text": "Check Coverage",
+      "isExternal": true,
+      "domain": "checkcoverage.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 162,
+      "url": "https://support.apple.com/en-in/repair?cid=gn-ols-repair-lp-get_help",
+      "text": "Repair",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 163,
+      "url": "https://www.apple.com/in/support/products/?cid=gn-ols-home-acpp-helpful_topics",
+      "text": "Get AppleCare+",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 164,
+      "url": "https://support.apple.com/en-in/apple-account?cid=gn-ols-appleaccount-psp-helpful_topics",
+      "text": "Apple Account and Password",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 165,
+      "url": "https://support.apple.com/en-in/billing?cid=gn-ols-billing-collection-helpful_topics",
+      "text": "Billing & Subscriptions",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 166,
+      "url": "https://support.apple.com/en-in/accessibility?cid=gn-ols-accessibility-psp-helpful_topics",
+      "text": "Accessibility",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 167,
+      "url": "https://www.apple.com/in/search",
+      "text": "",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 168,
+      "url": "https://www.apple.com/in/retail/",
+      "text": "Find a Store",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 169,
+      "url": "https://www.apple.com/in/shop/goto/accessories/apple_accessories",
+      "text": "Accessories",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 170,
+      "url": "https://www.apple.com/in/airpods/",
+      "text": "AirPods",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 171,
+      "url": "https://www.apple.com/in/apple-intelligence/",
+      "text": "Apple Intelligence",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 172,
+      "url": "https://www.apple.com/in/shop/goto/trade_in",
+      "text": "Apple Trade In",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 173,
+      "url": "https://www.apple.com/in/shop/goto/bag",
+      "text": "",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 174,
+      "url": "https://www.apple.com/in/privacy/",
+      "text": "Privacy",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 175,
+      "url": "https://www.apple.com/in/privacy/?cid=wwa-in-soc-iphn-prvy6-socl-twit-skvf-tmln-cpv-aos-dsk-apct-gnt-broa-prvlp-ufnnl-inen-pkboo-video-11ar-15s-hxvi-prvcy-na-lem-na-na-na-05680603#ac-ln-menustate",
+      "text": "Local Nav Open Menu",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 176,
+      "url": "https://www.apple.com/in/privacy/?cid=wwa-in-soc-iphn-prvy6-socl-twit-skvf-tmln-cpv-aos-dsk-apct-gnt-broa-prvlp-ufnnl-inen-pkboo-video-11ar-15s-hxvi-prvcy-na-lem-na-na-na-05680603#",
+      "text": "Local Nav Close Menu",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 177,
+      "url": "https://www.apple.com/in/privacy/features/",
+      "text": "Features",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 178,
+      "url": "https://www.apple.com/in/privacy/control/",
+      "text": "Control",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 179,
+      "url": "https://www.apple.com/in/privacy/labels/",
+      "text": "Labels",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 180,
+      "url": "https://www.apple.com/legal/transparency/",
+      "text": "Transparency Report",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 181,
+      "url": "https://www.apple.com/in/legal/privacy/en-ww/",
+      "text": "Privacy Policy",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 182,
+      "url": "x-safari-https://www.apple.com/in/privacy/",
+      "text": "Switch to Safari",
+      "isExternal": true,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 183,
+      "url": "https://www.apple.com/in/privacy/?cid=wwa-in-soc-iphn-prvy6-socl-twit-skvf-tmln-cpv-aos-dsk-apct-gnt-broa-prvlp-ufnnl-inen-pkboo-video-11ar-15s-hxvi-prvcy-na-lem-na-na-na-05680603#footnote-1",
+      "text": "*",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 184,
+      "url": "https://www.apple.com/in/apple-intelligence/",
+      "text": "Learn more about Apple Intelligence",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 185,
+      "url": "https://www.apple.com/in/today/event/skills-taking-charge-privacy-on-iphone?cid=rem-us-taa-privacy-on-iphone-2024",
+      "text": "Join a free session",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 186,
+      "url": "https://www.apple.com/in/privacy/docs/Building_a_Trusted_Ecosystem_for_Millions_of_Apps_A_Threat_Analysis_of_Sideloading.pdf",
+      "text": "View (PDF)",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 187,
+      "url": "https://www.apple.com/in/privacy/docs/A_Day_in_the_Life_of_Your_Data.pdf",
+      "text": "View (PDF)",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 188,
+      "url": "https://www.apple.com/in/privacy/features/",
+      "text": "Review privacy features",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 189,
+      "url": "https://www.apple.com/in/privacy/control/",
+      "text": "Control what you share",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 190,
+      "url": "https://www.apple.com/in/privacy/labels/",
+      "text": "See how apps from Apple handle your data",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 191,
+      "url": "https://www.apple.com/in/accessibility/",
+      "text": "Learn more",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 192,
+      "url": "https://www.apple.com/in/environment/",
+      "text": "Learn more",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 193,
+      "url": "https://www.apple.com/in/education-initiative/",
+      "text": "Learn more",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 194,
+      "url": "https://www.apple.com/in/supply-chain/",
+      "text": "Learn more",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 195,
+      "url": "https://www.apple.com/in/",
+      "text": "\n\t\t\t\t\t\t\t\t\t\t\t\tApple",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 196,
+      "url": "https://www.apple.com/in/shop/goto/store",
+      "text": "Store",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 197,
+      "url": "https://www.apple.com/in/mac/",
+      "text": "Mac",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 198,
+      "url": "https://www.apple.com/in/ipad/",
+      "text": "iPad",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 199,
+      "url": "https://www.apple.com/in/iphone/",
+      "text": "iPhone",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 200,
+      "url": "https://www.apple.com/in/watch/",
+      "text": "Watch",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 201,
+      "url": "https://www.apple.com/in/airpods/",
+      "text": "AirPods",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 202,
+      "url": "https://www.apple.com/in/tv-home/",
+      "text": "TV & Home",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 203,
+      "url": "https://www.apple.com/in/airtag/",
+      "text": "AirTag",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 204,
+      "url": "https://www.apple.com/in/shop/goto/buy_accessories",
+      "text": "Accessories",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 205,
+      "url": "https://www.apple.com/in/shop/goto/giftcards",
+      "text": "Gift Cards",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 206,
+      "url": "https://www.apple.com/in/wallet/",
+      "text": "Wallet",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 207,
+      "url": "https://account.apple.com/in/",
+      "text": "Manage Your Apple Account",
+      "isExternal": true,
+      "domain": "account.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 208,
+      "url": "https://www.apple.com/in/shop/goto/account",
+      "text": "Apple Store Account",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 209,
+      "url": "https://www.icloud.com/",
+      "text": "iCloud.com",
+      "isExternal": true,
+      "domain": "www.icloud.com",
+      "type": "link"
+    },
+    {
+      "index": 210,
+      "url": "https://www.apple.com/in/apple-one/",
+      "text": "Apple One",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 211,
+      "url": "https://www.apple.com/in/apple-tv-plus/",
+      "text": "Apple TV+",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 212,
+      "url": "https://www.apple.com/in/apple-music/",
+      "text": "Apple Music",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 213,
+      "url": "https://www.apple.com/in/apple-arcade/",
+      "text": "Apple Arcade",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 214,
+      "url": "https://www.apple.com/in/apple-podcasts/",
+      "text": "Apple Podcasts",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 215,
+      "url": "https://www.apple.com/in/apple-books/",
+      "text": "Apple Books",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 216,
+      "url": "https://www.apple.com/in/app-store/",
+      "text": "App Store",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 217,
+      "url": "https://www.apple.com/in/retail/",
+      "text": "Find a Store",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 218,
+      "url": "https://www.apple.com/in/retail/geniusbar/",
+      "text": "Genius Bar",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 219,
+      "url": "https://www.apple.com/in/today/",
+      "text": "Today at Apple",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 220,
+      "url": "https://www.apple.com/in/today/groups/",
+      "text": "Group Reservations",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 221,
+      "url": "https://www.apple.com/in/today/camp/",
+      "text": "Apple Camp",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 222,
+      "url": "https://www.apple.com/in/shop/goto/trade_in",
+      "text": "Apple Trade In",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 223,
+      "url": "https://www.apple.com/in/shop/goto/ways_to_buy",
+      "text": "Ways to Buy",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 224,
+      "url": "https://www.apple.com/in/recycling/",
+      "text": "Recycling Programme",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 225,
+      "url": "https://www.apple.com/in/shop/goto/order/list",
+      "text": "Order Status",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 226,
+      "url": "https://www.apple.com/in/shop/goto/help",
+      "text": "Shopping Help",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 227,
+      "url": "https://www.apple.com/in/business/",
+      "text": "Apple and Business",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 228,
+      "url": "https://www.apple.com/in/retail/business/",
+      "text": "Shop for Business",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 229,
+      "url": "https://www.apple.com/in/education/",
+      "text": "Apple and Education",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 230,
+      "url": "https://www.apple.com/in/education/k12/how-to-buy/",
+      "text": "Shop for Education",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 231,
+      "url": "https://www.apple.com/in/shop/goto/educationrouting",
+      "text": "Shop for University",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 232,
+      "url": "https://www.apple.com/in/healthcare/",
+      "text": "Apple in Healthcare",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 233,
+      "url": "https://www.apple.com/in/healthcare/mac/",
+      "text": "Mac in Healthcare",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 234,
+      "url": "https://www.apple.com/in/healthcare/apple-watch/",
+      "text": "Health on Apple Watch",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 235,
+      "url": "https://www.apple.com/in/accessibility/",
+      "text": "Accessibility",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 236,
+      "url": "https://www.apple.com/in/education-initiative/",
+      "text": "Education",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 237,
+      "url": "https://www.apple.com/in/environment/",
+      "text": "Environment",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 238,
+      "url": "https://www.apple.com/in/privacy/",
+      "text": "Privacy",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 239,
+      "url": "https://www.apple.com/in/supply-chain/",
+      "text": "Supply Chain Innovation",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 240,
+      "url": "https://www.apple.com/in/newsroom/",
+      "text": "Newsroom",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 241,
+      "url": "https://www.apple.com/in/leadership/",
+      "text": "Apple Leadership",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 242,
+      "url": "https://www.apple.com/careers/in/",
+      "text": "Career Opportunities",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 243,
+      "url": "https://investor.apple.com/",
+      "text": "Investors",
+      "isExternal": true,
+      "domain": "investor.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 244,
+      "url": "https://www.apple.com/compliance/",
+      "text": "Ethics & Compliance",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 245,
+      "url": "https://www.apple.com/in/apple-events/",
+      "text": "Events",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 246,
+      "url": "https://www.apple.com/in/contact/",
+      "text": "Contact Apple",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 247,
+      "url": "https://www.apple.com/in/retail/",
+      "text": "Find an Apple Store",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 248,
+      "url": "https://locate.apple.com/in/en/",
+      "text": "other retailer",
+      "isExternal": true,
+      "domain": "locate.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 249,
+      "url": "tel:000800%C2%A0040%C2%A01966",
+      "text": "000800 040 1966",
+      "isExternal": true,
+      "domain": "",
+      "type": "link"
+    },
+    {
+      "index": 250,
+      "url": "https://www.apple.com/choose-country-region/",
+      "text": "India",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 251,
+      "url": "https://www.apple.com/in/legal/privacy/",
+      "text": "Privacy Policy",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 252,
+      "url": "https://www.apple.com/in/legal/terms/site.html",
+      "text": "Terms of Use",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 253,
+      "url": "https://www.apple.com/in/shop/goto/help/sales_refunds",
+      "text": "Sales Policy",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 254,
+      "url": "https://www.apple.com/in/legal/",
+      "text": "Legal",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 255,
+      "url": "https://www.apple.com/in/sitemap/",
+      "text": "Site Map",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 256,
+      "url": "https://www.apple.com/in/privacy/features/",
+      "text": "View all privacy features",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 257,
+      "url": "https://support.apple.com/en-in/guide/personal-safety/welcome/web",
+      "text": "Learn more about personal safety with Apple devices",
+      "isExternal": true,
+      "domain": "support.apple.com",
+      "type": "link"
+    },
+    {
+      "index": 258,
+      "url": "https://www.apple.com/v/privacy/w/images/overview/privacy_icon_safari__ddxri29vssya_large.png",
+      "text": "",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "image"
+    },
+    {
+      "index": 259,
+      "url": "https://www.apple.com/v/privacy/w/images/overview/privacy_icon_chrome__cj6xupn3eoia_large.png",
+      "text": "",
+      "isExternal": false,
+      "domain": "www.apple.com",
+      "type": "image"
+    }
+  ]
+}

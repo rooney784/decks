@@ -1,0 +1,1202 @@
+{
+  "pageUrl": "https://medium.com/@shivambhadani_/aws-part-1-introduction-to-cloud-and-ec2-f06cdc80a1fc",
+  "pageTitle": "AWS Part 1 — Introduction to Cloud and EC2 | by Shivam Bhadani | Medium",
+  "domain": "medium.com",
+  "timestamp": "2025-06-27T09:01:02.281Z",
+  "totalLinks": 163,
+  "links": [
+    {
+      "index": 1,
+      "url": "https://medium.com/sitemap/sitemap.xml",
+      "text": "Sitemap",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 2,
+      "url": "https://rsci.app.link/?%24canonical_url=https%3A%2F%2Fmedium.com%2Fp%2Ff06cdc80a1fc&%7Efeature=LoOpenInAppButton&%7Echannel=ShowPostUnderUser&%7Estage=mobileNavBar&source=post_page---top_nav_layout_nav-----------------------------------------",
+      "text": "Open in app",
+      "isExternal": true,
+      "domain": "rsci.app.link"
+    },
+    {
+      "index": 3,
+      "url": "https://medium.com/m/signin?operation=login&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Faws-part-1-introduction-to-cloud-and-ec2-f06cdc80a1fc&source=post_page---top_nav_layout_nav-----------------------global_nav------------------",
+      "text": "Sign in",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 4,
+      "url": "https://medium.com/?source=post_page---top_nav_layout_nav-----------------------------------------",
+      "text": "Medium Logo",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 5,
+      "url": "https://medium.com/m/signin?operation=register&redirect=https%3A%2F%2Fmedium.com%2Fnew-story&source=---top_nav_layout_nav-----------------------new_post_topnav------------------",
+      "text": "Write",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 6,
+      "url": "https://medium.com/search?source=post_page---top_nav_layout_nav-----------------------------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 7,
+      "url": "https://medium.com/m/signin?operation=login&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Faws-part-1-introduction-to-cloud-and-ec2-f06cdc80a1fc&source=post_page---top_nav_layout_nav-----------------------global_nav------------------",
+      "text": "Sign in",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 8,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---byline--f06cdc80a1fc---------------------------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 9,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---byline--f06cdc80a1fc---------------------------------------",
+      "text": "Shivam Bhadani",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 10,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2Ff06cdc80a1fc&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Faws-part-1-introduction-to-cloud-and-ec2-f06cdc80a1fc&user=Shivam+Bhadani&userId=821bb7e71b90&source=---header_actions--f06cdc80a1fc---------------------clap_footer------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 11,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2Ff06cdc80a1fc&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Faws-part-1-introduction-to-cloud-and-ec2-f06cdc80a1fc&source=---header_actions--f06cdc80a1fc---------------------bookmark_footer------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 12,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2Fplans%3Fdimension%3Dpost_audio_button%26postId%3Df06cdc80a1fc&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Faws-part-1-introduction-to-cloud-and-ec2-f06cdc80a1fc&source=---header_actions--f06cdc80a1fc---------------------post_audio_button------------------",
+      "text": "Listen",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 13,
+      "url": "https://aws.amazon.com/console/",
+      "text": "Amazon Web Services (AWS)",
+      "isExternal": true,
+      "domain": "aws.amazon.com"
+    },
+    {
+      "index": 14,
+      "url": "https://github.com/shivam-bhadani/Simple-Nodejs-Server",
+      "text": "this nodejs server",
+      "isExternal": true,
+      "domain": "github.com"
+    },
+    {
+      "index": 15,
+      "url": "https://aws.amazon.com/ec2/pricing/on-demand/",
+      "text": "here",
+      "isExternal": true,
+      "domain": "aws.amazon.com"
+    },
+    {
+      "index": 16,
+      "url": "https://aws.amazon.com/free",
+      "text": "here",
+      "isExternal": true,
+      "domain": "aws.amazon.com"
+    },
+    {
+      "index": 17,
+      "url": "https://youtu.be/wjbbl0TTMeo?si=K34FKsia7k0n4yyN",
+      "text": "this video",
+      "isExternal": true,
+      "domain": "youtu.be"
+    },
+    {
+      "index": 18,
+      "url": "https://github.com/shivam-bhadani/Simple-Nodejs-Server",
+      "text": "https://github.com/shivam-bhadani/Simple-Nodejs-Server",
+      "isExternal": true,
+      "domain": "github.com"
+    },
+    {
+      "index": 19,
+      "url": "https://aws.amazon.com/console/",
+      "text": "AWS Console",
+      "isExternal": true,
+      "domain": "aws.amazon.com"
+    },
+    {
+      "index": 20,
+      "url": "https://medium.com/u/821bb7e71b90?source=post_page---user_mention--f06cdc80a1fc---------------------------------------",
+      "text": "Shivam Bhadani",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 21,
+      "url": "https://buymeacoffee.com/shivambhadani_",
+      "text": "https://buymeacoffee.com/shivambhadani_",
+      "isExternal": true,
+      "domain": "buymeacoffee.com"
+    },
+    {
+      "index": 22,
+      "url": "https://x.com/shivambhadani_",
+      "text": "Twitter",
+      "isExternal": true,
+      "domain": "x.com"
+    },
+    {
+      "index": 23,
+      "url": "https://www.linkedin.com/in/shivambhadani/",
+      "text": "LinkedIn",
+      "isExternal": true,
+      "domain": "www.linkedin.com"
+    },
+    {
+      "index": 24,
+      "url": "https://medium.com/tag/aws?source=post_page-----f06cdc80a1fc---------------------------------------",
+      "text": "AWS",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 25,
+      "url": "https://medium.com/tag/aws-ec2?source=post_page-----f06cdc80a1fc---------------------------------------",
+      "text": "Aws Ec2",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 26,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2Ff06cdc80a1fc&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Faws-part-1-introduction-to-cloud-and-ec2-f06cdc80a1fc&user=Shivam+Bhadani&userId=821bb7e71b90&source=---footer_actions--f06cdc80a1fc---------------------clap_footer------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 27,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2Ff06cdc80a1fc&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Faws-part-1-introduction-to-cloud-and-ec2-f06cdc80a1fc&user=Shivam+Bhadani&userId=821bb7e71b90&source=---footer_actions--f06cdc80a1fc---------------------clap_footer------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 28,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2Ff06cdc80a1fc&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Faws-part-1-introduction-to-cloud-and-ec2-f06cdc80a1fc&source=---footer_actions--f06cdc80a1fc---------------------bookmark_footer------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 29,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---post_author_info--f06cdc80a1fc---------------------------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 30,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---post_author_info--f06cdc80a1fc---------------------------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 31,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---post_author_info--f06cdc80a1fc---------------------------------------",
+      "text": "Written by Shivam Bhadani",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 32,
+      "url": "https://medium.com/@shivambhadani_/followers?source=post_page---post_author_info--f06cdc80a1fc---------------------------------------",
+      "text": "3.8K followers",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 33,
+      "url": "https://medium.com/@shivambhadani_/following?source=post_page---post_author_info--f06cdc80a1fc---------------------------------------",
+      "text": "30 following",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 34,
+      "url": "https://policy.medium.com/medium-rules-30e5502c4eb4?source=post_page---post_responses--f06cdc80a1fc---------------------------------------",
+      "text": "",
+      "isExternal": true,
+      "domain": "policy.medium.com"
+    },
+    {
+      "index": 35,
+      "url": "https://medium.com/m/signin?operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Faws-part-1-introduction-to-cloud-and-ec2-f06cdc80a1fc&source=---post_responses--f06cdc80a1fc---------------------respond_sidebar------------------",
+      "text": "What are your thoughts?",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 36,
+      "url": "https://medium.com/@vikwaso?source=post_page---post_responses--f06cdc80a1fc----0-----------------------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 37,
+      "url": "https://medium.com/@vikwaso?source=post_page---post_responses--f06cdc80a1fc----0-----------------------------------",
+      "text": "Victor wasonga onyango",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 38,
+      "url": "https://medium.com/@vikwaso/have-read-and-clapped-to-your-article-please-let-the-community-grow-clapp-read-react-and-also-dddb7b4d4d1b?source=post_page---post_responses--f06cdc80a1fc----0-----------------------------------",
+      "text": "Aug 16, 2024",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 39,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2Fdddb7b4d4d1b&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40vikwaso%2Fhave-read-and-clapped-to-your-article-please-let-the-community-grow-clapp-read-react-and-also-dddb7b4d4d1b&user=Victor+wasonga+onyango&userId=903d943149dc&source=---post_responses--dddb7b4d4d1b----0-----------------respond_sidebar------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 40,
+      "url": "https://medium.com/@vikwaso?source=post_page---post_responses--f06cdc80a1fc----1-----------------------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 41,
+      "url": "https://medium.com/@vikwaso?source=post_page---post_responses--f06cdc80a1fc----1-----------------------------------",
+      "text": "Victor wasonga onyango",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 42,
+      "url": "https://medium.com/@vikwaso/https-medium-com-admiring-multipotentiality-terraform-custom-modules-to-build-provision-and-deploy-4b197a7117a5?source=post_page---post_responses--f06cdc80a1fc----1-----------------------------------",
+      "text": "Aug 16, 2024",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 43,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2F4b197a7117a5&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40vikwaso%2Fhttps-medium-com-admiring-multipotentiality-terraform-custom-modules-to-build-provision-and-deploy-4b197a7117a5&user=Victor+wasonga+onyango&userId=903d943149dc&source=---post_responses--4b197a7117a5----1-----------------respond_sidebar------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 44,
+      "url": "https://medium.com/@random230user?source=post_page---post_responses--f06cdc80a1fc----2-----------------------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 45,
+      "url": "https://medium.com/@random230user?source=post_page---post_responses--f06cdc80a1fc----2-----------------------------------",
+      "text": "random230",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 46,
+      "url": "https://medium.com/@random230user/great-bro-48ef98f14dbc?source=post_page---post_responses--f06cdc80a1fc----2-----------------------------------",
+      "text": "Sep 14, 2024",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 47,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fvote%2Fp%2F48ef98f14dbc&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40random230user%2Fgreat-bro-48ef98f14dbc&user=random230&userId=edc4aca68fda&source=---post_responses--48ef98f14dbc----2-----------------respond_sidebar------------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 48,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---author_recirc--f06cdc80a1fc----0---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 49,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---author_recirc--f06cdc80a1fc----0---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "Shivam Bhadani",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 50,
+      "url": "https://medium.com/@shivambhadani_/system-design-for-beginners-everything-you-need-in-one-article-c74eb702540b?source=post_page---author_recirc--f06cdc80a1fc----0---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "System Design For Beginners: Everything You Need in One ArticleOne shot solution for any System Design Interview.",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 51,
+      "url": "https://medium.com/@shivambhadani_/system-design-for-beginners-everything-you-need-in-one-article-c74eb702540b?source=post_page---author_recirc--f06cdc80a1fc----0---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "A clap icon8.8KA response icon98",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 52,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2Fc74eb702540b&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Fsystem-design-for-beginners-everything-you-need-in-one-article-c74eb702540b&source=---author_recirc--f06cdc80a1fc----0-----------------bookmark_preview----e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 53,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---author_recirc--f06cdc80a1fc----1---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 54,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---author_recirc--f06cdc80a1fc----1---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "Shivam Bhadani",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 55,
+      "url": "https://medium.com/@shivambhadani_/mastering-advanced-reactjs-concepts-essential-knowledge-for-every-frontend-developer-8123cf0b13ab?source=post_page---author_recirc--f06cdc80a1fc----1---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "Mastering Advanced ReactJS Concepts: Essential Knowledge for Every Frontend DeveloperAfter reading this blog, you can clear every frontend developer interview.",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 56,
+      "url": "https://medium.com/@shivambhadani_/mastering-advanced-reactjs-concepts-essential-knowledge-for-every-frontend-developer-8123cf0b13ab?source=post_page---author_recirc--f06cdc80a1fc----1---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "A clap icon1.2KA response icon36",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 57,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F8123cf0b13ab&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Fmastering-advanced-reactjs-concepts-essential-knowledge-for-every-frontend-developer-8123cf0b13ab&source=---author_recirc--f06cdc80a1fc----1-----------------bookmark_preview----e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 58,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---author_recirc--f06cdc80a1fc----2---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 59,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---author_recirc--f06cdc80a1fc----2---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "Shivam Bhadani",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 60,
+      "url": "https://medium.com/@shivambhadani_/a-deep-dive-into-concurrency-in-golang-understanding-goroutines-channels-wait-groups-c6a2dc8ee0c4?source=post_page---author_recirc--f06cdc80a1fc----2---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "A Deep Dive into Concurrency in Golang: Understanding Goroutines, Channels, Wait Groups…This one-shot blog covers everything about concurrency in Golang, from basics to advanced.",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 61,
+      "url": "https://medium.com/@shivambhadani_/a-deep-dive-into-concurrency-in-golang-understanding-goroutines-channels-wait-groups-c6a2dc8ee0c4?source=post_page---author_recirc--f06cdc80a1fc----2---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "A clap icon123A response icon12",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 62,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2Fc6a2dc8ee0c4&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Fa-deep-dive-into-concurrency-in-golang-understanding-goroutines-channels-wait-groups-c6a2dc8ee0c4&source=---author_recirc--f06cdc80a1fc----2-----------------bookmark_preview----e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 63,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---author_recirc--f06cdc80a1fc----3---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 64,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---author_recirc--f06cdc80a1fc----3---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "Shivam Bhadani",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 65,
+      "url": "https://medium.com/@shivambhadani_/trilogy-innovations-codenation-interview-experience-for-sde-intern-6bf99ee748ac?source=post_page---author_recirc--f06cdc80a1fc----3---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "Trilogy Innovations (CodeNation) Interview Experience for SDE InternI applied through CodeAgon on 8 January 2023. CodeAgon is a hiring challenge of Trilogy Innovations every year in January.",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 66,
+      "url": "https://medium.com/@shivambhadani_/trilogy-innovations-codenation-interview-experience-for-sde-intern-6bf99ee748ac?source=post_page---author_recirc--f06cdc80a1fc----3---------------------e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "A clap icon148A response icon1",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 67,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F6bf99ee748ac&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Ftrilogy-innovations-codenation-interview-experience-for-sde-intern-6bf99ee748ac&source=---author_recirc--f06cdc80a1fc----3-----------------bookmark_preview----e6ea4759_f9f8_4719_a335_457d72b8a4ec--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 68,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---author_recirc--f06cdc80a1fc---------------------------------------",
+      "text": "See all from Shivam Bhadani",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 69,
+      "url": "https://medium.com/womenintechnology?source=post_page---read_next_recirc--f06cdc80a1fc----0---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 70,
+      "url": "https://medium.com/womenintechnology?source=post_page---read_next_recirc--f06cdc80a1fc----0---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "Women in Technology",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 71,
+      "url": "https://medium.com/@dasvarsha?source=post_page---read_next_recirc--f06cdc80a1fc----0---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "Varsha Das",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 72,
+      "url": "https://medium.com/womenintechnology/i-cut-the-noise-and-focused-on-just-one-thing-heres-what-happened-a6a55a0692e5?source=post_page---read_next_recirc--f06cdc80a1fc----0---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "I am not a *Genius*, I Just Focused On One Thing for 15 DaysHere is what happened…",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 73,
+      "url": "https://medium.com/womenintechnology/i-cut-the-noise-and-focused-on-just-one-thing-heres-what-happened-a6a55a0692e5?source=post_page---read_next_recirc--f06cdc80a1fc----0---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "A clap icon176A response icon3",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 74,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2Fa6a55a0692e5&operation=register&redirect=https%3A%2F%2Fmedium.com%2Fwomenintechnology%2Fi-cut-the-noise-and-focused-on-just-one-thing-heres-what-happened-a6a55a0692e5&source=---read_next_recirc--f06cdc80a1fc----0-----------------bookmark_preview----7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 75,
+      "url": "https://medium.com/@the-expert-developer?source=post_page---read_next_recirc--f06cdc80a1fc----1---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 76,
+      "url": "https://medium.com/@the-expert-developer?source=post_page---read_next_recirc--f06cdc80a1fc----1---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "The Expert Developer",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 77,
+      "url": "https://medium.com/@the-expert-developer/the-javascript-interview-question-that-stumps-90-of-developers-6ce7e04a3c9f?source=post_page---read_next_recirc--f06cdc80a1fc----1---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "💣 The JavaScript Interview Question That Stumps 90% of Developers 🧠❌Unlocking the Misunderstood Nuance in JavaScript Interviews",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 78,
+      "url": "https://medium.com/@the-expert-developer/the-javascript-interview-question-that-stumps-90-of-developers-6ce7e04a3c9f?source=post_page---read_next_recirc--f06cdc80a1fc----1---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "A clap icon312A response icon3",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 79,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F6ce7e04a3c9f&operation=register&redirect=https%3A%2F%2Fthe-expert-developer.medium.com%2Fthe-javascript-interview-question-that-stumps-90-of-developers-6ce7e04a3c9f&source=---read_next_recirc--f06cdc80a1fc----1-----------------bookmark_preview----7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 80,
+      "url": "https://medium.com/@integrationninjas?source=post_page---read_next_recirc--f06cdc80a1fc----0---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 81,
+      "url": "https://medium.com/@integrationninjas?source=post_page---read_next_recirc--f06cdc80a1fc----0---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "Integrations Ninjas",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 82,
+      "url": "https://medium.com/@integrationninjas/deploy-mern-stack-app-on-aws-ec2-using-github-actions-6dcd2a059090?source=post_page---read_next_recirc--f06cdc80a1fc----0---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "Deploy MERN Stack App On AWS EC2 Using GitHub ActionsIntroduction",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 83,
+      "url": "https://medium.com/@integrationninjas/deploy-mern-stack-app-on-aws-ec2-using-github-actions-6dcd2a059090?source=post_page---read_next_recirc--f06cdc80a1fc----0---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "A clap icon60A response icon1",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 84,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F6dcd2a059090&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40integrationninjas%2Fdeploy-mern-stack-app-on-aws-ec2-using-github-actions-6dcd2a059090&source=---read_next_recirc--f06cdc80a1fc----0-----------------bookmark_preview----7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 85,
+      "url": "https://medium.com/@ryanralmeida?source=post_page---read_next_recirc--f06cdc80a1fc----1---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 86,
+      "url": "https://medium.com/@ryanralmeida?source=post_page---read_next_recirc--f06cdc80a1fc----1---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "Ryan Almeida",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 87,
+      "url": "https://medium.com/@ryanralmeida/1-year-into-my-cloud-career-transition-a-sequel-7208fc18cb87?source=post_page---read_next_recirc--f06cdc80a1fc----1---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "1 Year Into My Cloud Career Transition: A SequelIntroduction",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 88,
+      "url": "https://medium.com/@ryanralmeida/1-year-into-my-cloud-career-transition-a-sequel-7208fc18cb87?source=post_page---read_next_recirc--f06cdc80a1fc----1---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "A clap icon36",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 89,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F7208fc18cb87&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40ryanralmeida%2F1-year-into-my-cloud-career-transition-a-sequel-7208fc18cb87&source=---read_next_recirc--f06cdc80a1fc----1-----------------bookmark_preview----7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 90,
+      "url": "https://medium.com/write-a-catalyst?source=post_page---read_next_recirc--f06cdc80a1fc----2---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 91,
+      "url": "https://medium.com/write-a-catalyst?source=post_page---read_next_recirc--f06cdc80a1fc----2---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "Write A Catalyst",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 92,
+      "url": "https://medium.com/@adarsh-gupta?source=post_page---read_next_recirc--f06cdc80a1fc----2---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "Adarsh Gupta",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 93,
+      "url": "https://medium.com/write-a-catalyst/you-are-fired-now-80458d77205a?source=post_page---read_next_recirc--f06cdc80a1fc----2---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "Coding vs VIBE CodingVibe Coding just replaced your job🤦🏻‍♂️",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 94,
+      "url": "https://medium.com/write-a-catalyst/you-are-fired-now-80458d77205a?source=post_page---read_next_recirc--f06cdc80a1fc----2---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "A clap icon3.7KA response icon155",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 95,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F80458d77205a&operation=register&redirect=https%3A%2F%2Fmedium.com%2Fwrite-a-catalyst%2Fyou-are-fired-now-80458d77205a&source=---read_next_recirc--f06cdc80a1fc----2-----------------bookmark_preview----7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 96,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---read_next_recirc--f06cdc80a1fc----3---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 97,
+      "url": "https://medium.com/@shivambhadani_?source=post_page---read_next_recirc--f06cdc80a1fc----3---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "Shivam Bhadani",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 98,
+      "url": "https://medium.com/@shivambhadani_/mastering-advanced-reactjs-concepts-essential-knowledge-for-every-frontend-developer-8123cf0b13ab?source=post_page---read_next_recirc--f06cdc80a1fc----3---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "Mastering Advanced ReactJS Concepts: Essential Knowledge for Every Frontend DeveloperAfter reading this blog, you can clear every frontend developer interview.",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 99,
+      "url": "https://medium.com/@shivambhadani_/mastering-advanced-reactjs-concepts-essential-knowledge-for-every-frontend-developer-8123cf0b13ab?source=post_page---read_next_recirc--f06cdc80a1fc----3---------------------7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "A clap icon1.2KA response icon36",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 100,
+      "url": "https://medium.com/m/signin?actionUrl=https%3A%2F%2Fmedium.com%2F_%2Fbookmark%2Fp%2F8123cf0b13ab&operation=register&redirect=https%3A%2F%2Fmedium.com%2F%40shivambhadani_%2Fmastering-advanced-reactjs-concepts-essential-knowledge-for-every-frontend-developer-8123cf0b13ab&source=---read_next_recirc--f06cdc80a1fc----3-----------------bookmark_preview----7db51d8e_ab04_4123_98b8_7d1003e8bba5--------------",
+      "text": "",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 101,
+      "url": "https://medium.com/?source=post_page---read_next_recirc--f06cdc80a1fc---------------------------------------",
+      "text": "See more recommendations",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 102,
+      "url": "https://help.medium.com/hc/en-us?source=post_page-----f06cdc80a1fc---------------------------------------",
+      "text": "Help",
+      "isExternal": true,
+      "domain": "help.medium.com"
+    },
+    {
+      "index": 103,
+      "url": "https://medium.statuspage.io/?source=post_page-----f06cdc80a1fc---------------------------------------",
+      "text": "Status",
+      "isExternal": true,
+      "domain": "medium.statuspage.io"
+    },
+    {
+      "index": 104,
+      "url": "https://medium.com/about?autoplay=1&source=post_page-----f06cdc80a1fc---------------------------------------",
+      "text": "About",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 105,
+      "url": "https://medium.com/jobs-at-medium/work-at-medium-959d1a85284e?source=post_page-----f06cdc80a1fc---------------------------------------",
+      "text": "Careers",
+      "isExternal": false,
+      "domain": "medium.com"
+    },
+    {
+      "index": 106,
+      "url": "mailto:pressinquiries@medium.com",
+      "text": "Press",
+      "isExternal": true,
+      "domain": ""
+    },
+    {
+      "index": 107,
+      "url": "https://blog.medium.com/?source=post_page-----f06cdc80a1fc---------------------------------------",
+      "text": "Blog",
+      "isExternal": true,
+      "domain": "blog.medium.com"
+    },
+    {
+      "index": 108,
+      "url": "https://policy.medium.com/medium-privacy-policy-f03bf92035c9?source=post_page-----f06cdc80a1fc---------------------------------------",
+      "text": "Privacy",
+      "isExternal": true,
+      "domain": "policy.medium.com"
+    },
+    {
+      "index": 109,
+      "url": "https://policy.medium.com/medium-rules-30e5502c4eb4?source=post_page-----f06cdc80a1fc---------------------------------------",
+      "text": "Rules",
+      "isExternal": true,
+      "domain": "policy.medium.com"
+    },
+    {
+      "index": 110,
+      "url": "https://policy.medium.com/medium-terms-of-service-9db0094a1e0f?source=post_page-----f06cdc80a1fc---------------------------------------",
+      "text": "Terms",
+      "isExternal": true,
+      "domain": "policy.medium.com"
+    },
+    {
+      "index": 111,
+      "url": "https://speechify.com/medium?source=post_page-----f06cdc80a1fc---------------------------------------",
+      "text": "Text to speech",
+      "isExternal": true,
+      "domain": "speechify.com"
+    },
+    {
+      "index": 112,
+      "url": "https://miro.medium.com/v2/resize:fill:32:32/1*dmbNkD5D-u45r44go_cf0g.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 113,
+      "url": "https://miro.medium.com/v2/da:true/resize:fill:32:32/0*aNGNp86u8ktNhe63",
+      "text": "Shivam Bhadani",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 114,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*-j67_EIOJ7EE3qAoC3WqZA.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 115,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*0t8UueNlQS7Kz9tydAFx6A.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 116,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*wUsj6hC3IXc7SZX_CEgbfw.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 117,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*EBbNZpE_jMX7MGcFkfHgGQ.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 118,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*wx92Ac8lafd0hjf3TbW1VA.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 119,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*y8BnDcA68YyB6Dqz4ekBbg.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 120,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*pHUoh3xcJSqV5B8DZBnaBw.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 121,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*2VF82nsFCfhy4yBdX3BMmw.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 122,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*fWdqsSmQEY0K_f5uu0GidA.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 123,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*Agy7hTxhgYFClu8gai7UHw.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 124,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*ridrU1c894PhE-XMQ81pLQ.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 125,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*nxRHs9BZL2Ah8FO2wprmRg.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 126,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*POSj0q1BasVX3YUuz-55Qg.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 127,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*DI5i1CYZ7d9Ffve1zIoz_A.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 128,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*_Kgw7Q0d8N3c59UG7YQlzg.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 129,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*yPP0uTejm72QLYHKWCI7aQ.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 130,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*wQ8gLC43sPMSuFh4O_T8eQ.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 131,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*lK-qpYZQunHySCTn9tDf-g.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 132,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*NrI1be7I000QSNxMmkNj9g.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 133,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*FXU3THHEVy6zDeI0--ptOA.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 134,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*ICURivuCOLXu2--pZtFOgQ.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 135,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*FfujMXyDGVm2KsQma2iltQ.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 136,
+      "url": "https://miro.medium.com/v2/resize:fit:700/1*wDuNNuC7lmrA97CvtKnzRQ.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 137,
+      "url": "https://miro.medium.com/v2/resize:fit:640/1*6LQxhantwyzLaUpDQWdI_g.jpeg",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 138,
+      "url": "https://miro.medium.com/v2/resize:fill:48:48/0*aNGNp86u8ktNhe63",
+      "text": "Shivam Bhadani",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 139,
+      "url": "https://miro.medium.com/v2/resize:fill:64:64/0*aNGNp86u8ktNhe63",
+      "text": "Shivam Bhadani",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 140,
+      "url": "https://miro.medium.com/v2/resize:fill:32:32/1*dmbNkD5D-u45r44go_cf0g.png",
+      "text": "",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 141,
+      "url": "https://miro.medium.com/v2/resize:fill:32:32/1*8QfMdzo6vMfPdDIRJIMumQ.png",
+      "text": "Victor wasonga onyango",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 142,
+      "url": "https://miro.medium.com/v2/resize:fill:32:32/1*8QfMdzo6vMfPdDIRJIMumQ.png",
+      "text": "Victor wasonga onyango",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 143,
+      "url": "https://miro.medium.com/v2/resize:fill:32:32/0*_sFcmU0LEdD29MMr",
+      "text": "random230",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 144,
+      "url": "https://miro.medium.com/v2/resize:fit:679/1*NZqp4-jhGa1ZY_-HX95reQ.png",
+      "text": "System Design For Beginners: Everything You Need in One Article",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 145,
+      "url": "https://miro.medium.com/v2/resize:fill:20:20/0*aNGNp86u8ktNhe63",
+      "text": "Shivam Bhadani",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 146,
+      "url": "https://miro.medium.com/v2/resize:fit:679/1*qOH6EEud0oNI1Fmg47WNeg.png",
+      "text": "Mastering Advanced ReactJS Concepts: Essential Knowledge for Every Frontend Developer",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 147,
+      "url": "https://miro.medium.com/v2/resize:fill:20:20/0*aNGNp86u8ktNhe63",
+      "text": "Shivam Bhadani",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 148,
+      "url": "https://miro.medium.com/v2/resize:fit:679/1*Q1ccNccput7Lfj8BosVlZQ.png",
+      "text": "A Deep Dive into Concurrency in Golang: Understanding Goroutines, Channels, Wait Groups…",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 149,
+      "url": "https://miro.medium.com/v2/resize:fill:20:20/0*aNGNp86u8ktNhe63",
+      "text": "Shivam Bhadani",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 150,
+      "url": "https://miro.medium.com/v2/resize:fit:679/1*V-upnan15LyAiL9-8_n-MQ.png",
+      "text": "Trilogy Innovations (CodeNation) Interview Experience for SDE Intern",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 151,
+      "url": "https://miro.medium.com/v2/resize:fill:20:20/0*aNGNp86u8ktNhe63",
+      "text": "Shivam Bhadani",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 152,
+      "url": "https://miro.medium.com/v2/resize:fit:679/1*Da6LKJYfe5vDkPgPMEUBRA.jpeg",
+      "text": "I am not a *Genius*, I Just Focused On One Thing for 15 Days",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 153,
+      "url": "https://miro.medium.com/v2/resize:fill:20:20/1*kd0DvPkLdn59Emtg_rnsqg.png",
+      "text": "Women in Technology",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 154,
+      "url": "https://miro.medium.com/v2/resize:fit:679/0*y1N8l9Oz5FrmZ0h6",
+      "text": "💣 The JavaScript Interview Question That Stumps 90% of Developers 🧠❌",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 155,
+      "url": "https://miro.medium.com/v2/resize:fill:20:20/1*wxlB19c4zt0DoeSAjO1ZHA.jpeg",
+      "text": "The Expert Developer",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 156,
+      "url": "https://miro.medium.com/v2/resize:fit:679/1*Hq4AB7bbP9yWH5X2kILixw.png",
+      "text": "Deploy MERN Stack App On AWS EC2 Using GitHub Actions",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 157,
+      "url": "https://miro.medium.com/v2/resize:fill:20:20/0*fmankVpky9XRZPTU",
+      "text": "Integrations Ninjas",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 158,
+      "url": "https://miro.medium.com/v2/resize:fit:679/1*8y-pHQ40diMqvdWoLHFIQw.png",
+      "text": "1 Year Into My Cloud Career Transition: A Sequel",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 159,
+      "url": "https://miro.medium.com/v2/resize:fill:20:20/1*s2iUJdEmSmdjRODrqcHJyw.jpeg",
+      "text": "Ryan Almeida",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 160,
+      "url": "https://miro.medium.com/v2/resize:fit:679/1*eDUqOs3StzFWd5oOCkBjww.png",
+      "text": "Coding vs VIBE Coding",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 161,
+      "url": "https://miro.medium.com/v2/resize:fill:20:20/1*KCHN5TM3Ga2PqZHA4hNbaw.png",
+      "text": "Write A Catalyst",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 162,
+      "url": "https://miro.medium.com/v2/resize:fit:679/1*qOH6EEud0oNI1Fmg47WNeg.png",
+      "text": "Mastering Advanced ReactJS Concepts: Essential Knowledge for Every Frontend Developer",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    },
+    {
+      "index": 163,
+      "url": "https://miro.medium.com/v2/resize:fill:20:20/0*aNGNp86u8ktNhe63",
+      "text": "Shivam Bhadani",
+      "isExternal": true,
+      "domain": "miro.medium.com",
+      "type": "image"
+    }
+  ]
+}

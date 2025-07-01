@@ -1,0 +1,42 @@
+{
+  "name": "Automa Chrome GUI Environment",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "runArgs": [
+    "--cap-add=SYS_ADMIN",
+    "--ipc=host",
+    "--shm-size=2g",
+    "--security-opt=seccomp=unconfined"
+  ],
+  "forwardPorts": [6080, 9222],
+  "portsAttributes": {
+    "6080": {
+      "label": "noVNC GUI Access",
+      "onAutoForward": "notify"
+    },
+    "9222": {
+      "label": "Chrome Remote Debugging",
+      "onAutoForward": "notify"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "moby": true
+    }
+  },
+  "remoteUser": "root",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": "chown -R root:root /workspace"
+}

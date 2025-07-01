@@ -1,0 +1,20 @@
+Index,URL,Text,Type,Domain,Is External
+1,https://x.com/login,Log in,link,x.com,false
+2,https://x.com/i/flow/signup,Sign up,link,x.com,false
+3,https://x.com/,,link,x.com,false
+4,https://x.com/queenhaley___/header_photo,,link,x.com,false
+5,https://x.com/queenhaley___/photo,,link,x.com,false
+6,https://x.com/queenhaley___/following,"2,852 Following",link,x.com,false
+7,https://x.com/queenhaley___/verified_followers,130 Followers,link,x.com,false
+8,https://x.com/queenhaley___,Posts,link,x.com,false
+9,https://x.com/queenhaley___/with_replies,Replies,link,x.com,false
+10,https://x.com/queenhaley___/media,Media,link,x.com,false
+11,https://x.com/i/flow/signup,Create account,link,x.com,false
+12,https://x.com/tos,Terms of Service,link,x.com,false
+13,https://x.com/privacy,Privacy Policy,link,x.com,false
+14,https://help.x.com/rules-and-policies/twitter-cookies,Cookie Use.,link,help.x.com,true
+15,https://x.com/tos,Terms of Service,link,x.com,false
+16,https://x.com/privacy,Privacy Policy,link,x.com,false
+17,https://support.x.com/articles/20170514,Cookie Policy,link,support.x.com,true
+18,https://pbs.twimg.com/profile_banners/1460887925227413507/1650468032/600x200,,image,pbs.twimg.com,true
+19,https://pbs.twimg.com/profile_images/1672426299065786368/9xjQVw8w_200x200.jpg,Opens profile photo,image,pbs.twimg.com,true

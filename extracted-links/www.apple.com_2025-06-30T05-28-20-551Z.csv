@@ -1,0 +1,261 @@
+Index,URL,Text,Type,Domain,IsExternal
+1,https://www.apple.com/in/,Apple,link,www.apple.com,false
+2,https://www.apple.com/in/shop/goto/store,Store,link,www.apple.com,false
+3,https://www.apple.com/in/shop/goto/store,Shop the Latest,link,www.apple.com,false
+4,https://www.apple.com/in/shop/goto/buy_mac,Mac,link,www.apple.com,false
+5,https://www.apple.com/in/shop/goto/buy_ipad,iPad,link,www.apple.com,false
+6,https://www.apple.com/in/shop/goto/buy_iphone,iPhone,link,www.apple.com,false
+7,https://www.apple.com/in/shop/goto/buy_watch,Apple Watch,link,www.apple.com,false
+8,https://www.apple.com/in/shop/goto/buy_accessories,Accessories,link,www.apple.com,false
+9,https://www.apple.com/in/retail/,Find a Store,link,www.apple.com,false
+10,https://www.apple.com/in/shop/goto/order/list,Order Status,link,www.apple.com,false
+11,https://www.apple.com/in/shop/goto/ways_to_buy,Ways to Buy,link,www.apple.com,false
+12,https://www.apple.com/in/shop/goto/personal_setup,Personal Setup,link,www.apple.com,false
+13,https://www.apple.com/in/shop/goto/edu_store,College Student Offer,link,www.apple.com,false
+14,https://www.apple.com/in/shop/goto/educationrouting,Education,link,www.apple.com,false
+15,https://www.apple.com/in/retail/business/,Business,link,www.apple.com,false
+16,https://www.apple.com/in/mac/,Mac,link,www.apple.com,false
+17,https://www.apple.com/in/mac/,Explore All Mac,link,www.apple.com,false
+18,https://www.apple.com/in/macbook-air/,MacBook Air,link,www.apple.com,false
+19,https://www.apple.com/in/macbook-pro/,MacBook Pro,link,www.apple.com,false
+20,https://www.apple.com/in/imac/,iMac,link,www.apple.com,false
+21,https://www.apple.com/in/mac-mini/,Mac mini,link,www.apple.com,false
+22,https://www.apple.com/in/mac-studio/,Mac Studio,link,www.apple.com,false
+23,https://www.apple.com/in/mac-pro/,Mac Pro,link,www.apple.com,false
+24,https://www.apple.com/in/displays/,Displays,link,www.apple.com,false
+25,https://www.apple.com/in/mac/compare/,Compare Mac,link,www.apple.com,false
+26,https://www.apple.com/in/mac/mac-does-that/,Switch from PC to Mac,link,www.apple.com,false
+27,https://www.apple.com/in/shop/goto/buy_mac,Shop Mac,link,www.apple.com,false
+28,https://www.apple.com/in/shop/goto/mac/accessories,Mac Accessories,link,www.apple.com,false
+29,https://www.apple.com/in/shop/goto/ways_to_buy,Ways to Buy,link,www.apple.com,false
+30,https://www.apple.com/in/shop/goto/edu_store,College Student Offer,link,www.apple.com,false
+31,https://support.apple.com/en-in/mac?cid=gn-ols-mac-psp-prodfly,Mac Support,link,support.apple.com,true
+32,https://www.apple.com/in/support/products/mac/,AppleCare+ for Mac,link,www.apple.com,false
+33,https://www.apple.com/in/macos/macos-sequoia/,macOS Sequoia,link,www.apple.com,false
+34,https://www.apple.com/in/apple-intelligence/,Apple Intelligence,link,www.apple.com,false
+35,https://www.apple.com/in/apps/,Apps by Apple,link,www.apple.com,false
+36,https://www.apple.com/in/macos/continuity/,Continuity,link,www.apple.com,false
+37,https://www.apple.com/in/icloud/,iCloud+,link,www.apple.com,false
+38,https://www.apple.com/in/business/mac/,Mac for Business,link,www.apple.com,false
+39,https://www.apple.com/in/education/,Education,link,www.apple.com,false
+40,https://www.apple.com/in/ipad/,iPad,link,www.apple.com,false
+41,https://www.apple.com/in/ipad/,Explore All iPad,link,www.apple.com,false
+42,https://www.apple.com/in/ipad-pro/,iPad Pro,link,www.apple.com,false
+43,https://www.apple.com/in/ipad-air/,iPad Air,link,www.apple.com,false
+44,https://www.apple.com/in/ipad-11/,iPad,link,www.apple.com,false
+45,https://www.apple.com/in/ipad-mini/,iPad mini,link,www.apple.com,false
+46,https://www.apple.com/in/apple-pencil/,Apple Pencil,link,www.apple.com,false
+47,https://www.apple.com/in/ipad-keyboards/,Keyboards,link,www.apple.com,false
+48,https://www.apple.com/in/ipad/compare/,Compare iPad,link,www.apple.com,false
+49,https://www.apple.com/in/ipad/why-ipad/,Why iPad,link,www.apple.com,false
+50,https://www.apple.com/in/shop/goto/buy_ipad,Shop iPad,link,www.apple.com,false
+51,https://www.apple.com/in/shop/goto/ipad/accessories,iPad Accessories,link,www.apple.com,false
+52,https://www.apple.com/in/shop/goto/ways_to_buy,Ways to Buy,link,www.apple.com,false
+53,https://www.apple.com/in/shop/goto/edu_store,College Student Offer,link,www.apple.com,false
+54,https://support.apple.com/en-in/ipad?cid=gn-ols-ipad-psp-prodfly,iPad Support,link,support.apple.com,true
+55,https://www.apple.com/in/support/products/ipad/,AppleCare+ for iPad,link,www.apple.com,false
+56,https://www.apple.com/in/ipados/ipados-18/,iPadOS 18,link,www.apple.com,false
+57,https://www.apple.com/in/apple-intelligence/,Apple Intelligence,link,www.apple.com,false
+58,https://www.apple.com/in/apps/,Apps by Apple,link,www.apple.com,false
+59,https://www.apple.com/in/icloud/,iCloud+,link,www.apple.com,false
+60,https://www.apple.com/in/education/,Education,link,www.apple.com,false
+61,https://www.apple.com/in/iphone/,iPhone,link,www.apple.com,false
+62,https://www.apple.com/in/iphone/,Explore All iPhone,link,www.apple.com,false
+63,https://www.apple.com/in/iphone-16-pro/,iPhone 16 Pro,link,www.apple.com,false
+64,https://www.apple.com/in/iphone-16/,iPhone 16,link,www.apple.com,false
+65,https://www.apple.com/in/iphone-16e/,iPhone 16e,link,www.apple.com,false
+66,https://www.apple.com/in/shop/goto/buy_iphone/iphone_15,iPhone 15,link,www.apple.com,false
+67,https://www.apple.com/in/iphone/compare/,Compare iPhone,link,www.apple.com,false
+68,https://www.apple.com/in/iphone/switch/,Switch from Android,link,www.apple.com,false
+69,https://www.apple.com/in/shop/goto/buy_iphone,Shop iPhone,link,www.apple.com,false
+70,https://www.apple.com/in/shop/goto/iphone/accessories,iPhone Accessories,link,www.apple.com,false
+71,https://www.apple.com/in/shop/goto/trade_in,Apple Trade In,link,www.apple.com,false
+72,https://www.apple.com/in/shop/goto/ways_to_buy,Ways to Buy,link,www.apple.com,false
+73,https://support.apple.com/en-in/iphone?cid=gn-ols-iphone-psp-prodfly,iPhone Support,link,support.apple.com,true
+74,https://www.apple.com/in/support/products/iphone/,AppleCare+ for iPhone,link,www.apple.com,false
+75,https://www.apple.com/in/ios/ios-18/,iOS 18,link,www.apple.com,false
+76,https://www.apple.com/in/apple-intelligence/,Apple Intelligence,link,www.apple.com,false
+77,https://www.apple.com/in/apps/,Apps by Apple,link,www.apple.com,false
+78,https://www.apple.com/in/privacy/,iPhone Privacy,link,www.apple.com,false
+79,https://www.apple.com/in/icloud/,iCloud+,link,www.apple.com,false
+80,https://www.apple.com/in/wallet/,Wallet,link,www.apple.com,false
+81,https://www.apple.com/in/siri/,Siri,link,www.apple.com,false
+82,https://www.apple.com/in/watch/,Watch,link,www.apple.com,false
+83,https://www.apple.com/in/watch/,Explore All Apple Watch,link,www.apple.com,false
+84,https://www.apple.com/in/apple-watch-series-10/,Apple Watch Series 10,link,www.apple.com,false
+85,https://www.apple.com/in/apple-watch-ultra-2/,Apple Watch Ultra 2,link,www.apple.com,false
+86,https://www.apple.com/in/apple-watch-se/,Apple Watch SE,link,www.apple.com,false
+87,https://www.apple.com/in/apple-watch-nike/,Apple Watch Nike,link,www.apple.com,false
+88,https://www.apple.com/in/watch/compare/,Compare Watch,link,www.apple.com,false
+89,https://www.apple.com/in/watch/why-apple-watch/,Why Apple Watch,link,www.apple.com,false
+90,https://www.apple.com/in/shop/goto/buy_watch,Shop Apple Watch,link,www.apple.com,false
+91,https://www.apple.com/in/shop/goto/watch/bands,Apple Watch Straps,link,www.apple.com,false
+92,https://www.apple.com/in/shop/goto/watch/accessories,Apple Watch Accessories,link,www.apple.com,false
+93,https://www.apple.com/in/shop/goto/ways_to_buy,Ways to Buy,link,www.apple.com,false
+94,https://support.apple.com/en-in/watch?cid=gn-ols-watch-psp-prodfly,Apple Watch Support,link,support.apple.com,true
+95,https://www.apple.com/in/support/products/watch/,AppleCare+,link,www.apple.com,false
+96,https://www.apple.com/in/watchos/watchos-11/,watchOS 11,link,www.apple.com,false
+97,https://www.apple.com/in/apple-watch-for-your-kids/,Apple Watch For Your Kids,link,www.apple.com,false
+98,https://www.apple.com/in/apps/,Apps by Apple,link,www.apple.com,false
+99,https://www.apple.com/in/airpods/,AirPods,link,www.apple.com,false
+100,https://www.apple.com/in/airpods/,Explore All AirPods,link,www.apple.com,false
+101,https://www.apple.com/in/airpods-4/,AirPods 4,link,www.apple.com,false
+102,https://www.apple.com/in/airpods-pro/,AirPods Pro 2,link,www.apple.com,false
+103,https://www.apple.com/in/airpods-max/,AirPods Max,link,www.apple.com,false
+104,https://www.apple.com/in/airpods/compare/,Compare AirPods,link,www.apple.com,false
+105,https://www.apple.com/in/shop/goto/accessories/all_accessories/headphones_speakers?fh=47d1%2B3214%2B45aa%2B45ab&f=apple-overear-sport&page=1,Shop AirPods,link,www.apple.com,false
+106,https://www.apple.com/in/shop/goto/accessories/all_accessories/headphones_speakers?fh=47d1%2Be62115&f=headphoneacc&page=1,AirPods Accessories,link,www.apple.com,false
+107,https://support.apple.com/en-in/airpods?cid=gn-ols-airpods-psp-prodfly,AirPods Support,link,support.apple.com,true
+108,https://www.apple.com/in/support/products/headphones/,AppleCare+ for Headphones,link,www.apple.com,false
+109,https://www.apple.com/in/apple-music/,Apple Music,link,www.apple.com,false
+110,https://www.apple.com/in/tv-home/,TV & Home,link,www.apple.com,false
+111,https://www.apple.com/in/tv-home/,Explore TV & Home,link,www.apple.com,false
+112,https://www.apple.com/in/apple-tv-4k/,Apple TV 4K,link,www.apple.com,false
+113,https://www.apple.com/in/homepod-2nd-generation/,HomePod,link,www.apple.com,false
+114,https://www.apple.com/in/homepod-mini/,HomePod mini,link,www.apple.com,false
+115,https://www.apple.com/in/shop/goto/buy_tv/apple_tv_4k,Shop Apple TV 4K,link,www.apple.com,false
+116,https://www.apple.com/in/shop/goto/buy_homepod/homepod,Shop HomePod,link,www.apple.com,false
+117,https://www.apple.com/in/shop/goto/buy_homepod/homepod_mini,Shop HomePod mini,link,www.apple.com,false
+118,https://www.apple.com/in/shop/goto/product/MW5G3,Shop Siri Remote,link,www.apple.com,false
+119,https://www.apple.com/in/shop/goto/smart_home/accessories,TV & Home Accessories,link,www.apple.com,false
+120,https://support.apple.com/en-in/apple-tv?cid=gn-ols-appletv-psp-prodfly,Apple TV Support,link,support.apple.com,true
+121,https://support.apple.com/en-in/homepod?cid=gn-ols-homepod-psp-prodfly,HomePod Support,link,support.apple.com,true
+122,https://www.apple.com/in/support/products/,AppleCare+,link,www.apple.com,false
+123,https://www.apple.com/in/apple-tv-app/,Apple TV app,link,www.apple.com,false
+124,https://www.apple.com/in/apple-tv-plus/,Apple TV+,link,www.apple.com,false
+125,https://www.apple.com/in/home-app/,Home app,link,www.apple.com,false
+126,https://www.apple.com/in/apple-music/,Apple Music,link,www.apple.com,false
+127,https://www.apple.com/in/siri/,Siri,link,www.apple.com,false
+128,https://www.apple.com/in/airplay/,AirPlay,link,www.apple.com,false
+129,https://www.apple.com/in/entertainment/,Entertainment,link,www.apple.com,false
+130,https://www.apple.com/in/services/,Explore Entertainment,link,www.apple.com,false
+131,https://www.apple.com/in/apple-one/,Apple One,link,www.apple.com,false
+132,https://www.apple.com/in/apple-tv-plus/,Apple TV+,link,www.apple.com,false
+133,https://www.apple.com/in/apple-music/,Apple Music,link,www.apple.com,false
+134,https://www.apple.com/in/apple-arcade/,Apple Arcade,link,www.apple.com,false
+135,https://www.apple.com/in/apple-podcasts/,Apple Podcasts,link,www.apple.com,false
+136,https://www.apple.com/in/apple-books/,Apple Books,link,www.apple.com,false
+137,https://www.apple.com/in/app-store/,App Store,link,www.apple.com,false
+138,https://support.apple.com/en-in/tv?cid=gn-ols-tvplus-psp-prodfly,Apple TV+ Support,link,support.apple.com,true
+139,https://support.apple.com/en-in/music?cid=gn-ols-music-psp-prodfly,Apple Music Support,link,support.apple.com,true
+140,https://www.apple.com/in/shop/goto/buy_accessories,Accessories,link,www.apple.com,false
+141,https://www.apple.com/in/shop/goto/buy_accessories,Shop All Accessories,link,www.apple.com,false
+142,https://www.apple.com/in/shop/goto/mac/accessories,Mac,link,www.apple.com,false
+143,https://www.apple.com/in/shop/goto/ipad/accessories,iPad,link,www.apple.com,false
+144,https://www.apple.com/in/shop/goto/iphone/accessories,iPhone,link,www.apple.com,false
+145,https://www.apple.com/in/shop/goto/watch/accessories,Apple Watch,link,www.apple.com,false
+146,https://www.apple.com/in/shop/goto/accessories/all_accessories/headphones_speakers?fh=47d1%2B3214%2B45aa%2B45ab&f=apple-overear-sport&page=1,AirPods,link,www.apple.com,false
+147,https://www.apple.com/in/shop/goto/smart_home/accessories,TV & Home,link,www.apple.com,false
+148,https://www.apple.com/in/shop/goto/accessories/all_accessories/made_by_apple,Made by Apple,link,www.apple.com,false
+149,https://www.apple.com/in/shop/goto/accessories/all_accessories/beats_featured,Beats by Dr. Dre,link,www.apple.com,false
+150,https://www.apple.com/in/airtag/,AirTag,link,www.apple.com,false
+151,https://support.apple.com/en-in/?cid=gn-ols-home-hp-tab,Support,link,support.apple.com,true
+152,https://support.apple.com/en-in/iphone?cid=gn-ols-iphone-psp-explore,iPhone,link,support.apple.com,true
+153,https://support.apple.com/en-in/mac?cid=gn-ols-mac-psp-explore,Mac,link,support.apple.com,true
+154,https://support.apple.com/en-in/ipad?cid=gn-ols-ipad-psp-explore,iPad,link,support.apple.com,true
+155,https://support.apple.com/en-in/watch?cid=gn-ols-watch-psp-explore,Watch,link,support.apple.com,true
+156,https://support.apple.com/en-in/airpods?cid=gn-ols-airpods-psp-explore,AirPods,link,support.apple.com,true
+157,https://support.apple.com/en-in/music?cid=gn-ols-music-psp-explore,Music,link,support.apple.com,true
+158,https://support.apple.com/en-in/tv?cid=gn-ols-tv-psp-explore,TV,link,support.apple.com,true
+159,https://support.apple.com/en-in/?cid=gn-ols-home-hp-explore,Explore Support,link,support.apple.com,true
+160,https://discussions.apple.com/welcome?cid=gn-com-community-lp-get_help,Community,link,discussions.apple.com,true
+161,https://checkcoverage.apple.com/in/en?cid=gn-ols-checkcoverage-lp-get_help,Check Coverage,link,checkcoverage.apple.com,true
+162,https://support.apple.com/en-in/repair?cid=gn-ols-repair-lp-get_help,Repair,link,support.apple.com,true
+163,https://www.apple.com/in/support/products/?cid=gn-ols-home-acpp-helpful_topics,Get AppleCare+,link,www.apple.com,false
+164,https://support.apple.com/en-in/apple-account?cid=gn-ols-appleaccount-psp-helpful_topics,Apple Account and Password,link,support.apple.com,true
+165,https://support.apple.com/en-in/billing?cid=gn-ols-billing-collection-helpful_topics,Billing & Subscriptions,link,support.apple.com,true
+166,https://support.apple.com/en-in/accessibility?cid=gn-ols-accessibility-psp-helpful_topics,Accessibility,link,support.apple.com,true
+167,https://www.apple.com/in/search,,link,www.apple.com,false
+168,https://www.apple.com/in/retail/,Find a Store,link,www.apple.com,false
+169,https://www.apple.com/in/shop/goto/accessories/apple_accessories,Accessories,link,www.apple.com,false
+170,https://www.apple.com/in/airpods/,AirPods,link,www.apple.com,false
+171,https://www.apple.com/in/apple-intelligence/,Apple Intelligence,link,www.apple.com,false
+172,https://www.apple.com/in/shop/goto/trade_in,Apple Trade In,link,www.apple.com,false
+173,https://www.apple.com/in/shop/goto/bag,,link,www.apple.com,false
+174,https://www.apple.com/in/privacy/,Privacy,link,www.apple.com,false
+175,https://www.apple.com/in/privacy/?cid=wwa-in-soc-iphn-prvy6-socl-twit-skvf-tmln-cpv-aos-dsk-apct-gnt-broa-prvlp-ufnnl-inen-pkboo-video-11ar-15s-hxvi-prvcy-na-lem-na-na-na-05680603#ac-ln-menustate,Local Nav Open Menu,link,www.apple.com,false
+176,https://www.apple.com/in/privacy/?cid=wwa-in-soc-iphn-prvy6-socl-twit-skvf-tmln-cpv-aos-dsk-apct-gnt-broa-prvlp-ufnnl-inen-pkboo-video-11ar-15s-hxvi-prvcy-na-lem-na-na-na-05680603#,Local Nav Close Menu,link,www.apple.com,false
+177,https://www.apple.com/in/privacy/features/,Features,link,www.apple.com,false
+178,https://www.apple.com/in/privacy/control/,Control,link,www.apple.com,false
+179,https://www.apple.com/in/privacy/labels/,Labels,link,www.apple.com,false
+180,https://www.apple.com/legal/transparency/,Transparency Report,link,www.apple.com,false
+181,https://www.apple.com/in/legal/privacy/en-ww/,Privacy Policy,link,www.apple.com,false
+182,x-safari-https://www.apple.com/in/privacy/,Switch to Safari,link,www.apple.com,true
+183,https://www.apple.com/in/privacy/?cid=wwa-in-soc-iphn-prvy6-socl-twit-skvf-tmln-cpv-aos-dsk-apct-gnt-broa-prvlp-ufnnl-inen-pkboo-video-11ar-15s-hxvi-prvcy-na-lem-na-na-na-05680603#footnote-1,*,link,www.apple.com,false
+184,https://www.apple.com/in/apple-intelligence/,Learn more about Apple Intelligence,link,www.apple.com,false
+185,https://www.apple.com/in/today/event/skills-taking-charge-privacy-on-iphone?cid=rem-us-taa-privacy-on-iphone-2024,Join a free session,link,www.apple.com,false
+186,https://www.apple.com/in/privacy/docs/Building_a_Trusted_Ecosystem_for_Millions_of_Apps_A_Threat_Analysis_of_Sideloading.pdf,View (PDF),link,www.apple.com,false
+187,https://www.apple.com/in/privacy/docs/A_Day_in_the_Life_of_Your_Data.pdf,View (PDF),link,www.apple.com,false
+188,https://www.apple.com/in/privacy/features/,Review privacy features,link,www.apple.com,false
+189,https://www.apple.com/in/privacy/control/,Control what you share,link,www.apple.com,false
+190,https://www.apple.com/in/privacy/labels/,See how apps from Apple handle your data,link,www.apple.com,false
+191,https://www.apple.com/in/accessibility/,Learn more,link,www.apple.com,false
+192,https://www.apple.com/in/environment/,Learn more,link,www.apple.com,false
+193,https://www.apple.com/in/education-initiative/,Learn more,link,www.apple.com,false
+194,https://www.apple.com/in/supply-chain/,Learn more,link,www.apple.com,false
+195,https://www.apple.com/in/,"
+												Apple",link,www.apple.com,false
+196,https://www.apple.com/in/shop/goto/store,Store,link,www.apple.com,false
+197,https://www.apple.com/in/mac/,Mac,link,www.apple.com,false
+198,https://www.apple.com/in/ipad/,iPad,link,www.apple.com,false
+199,https://www.apple.com/in/iphone/,iPhone,link,www.apple.com,false
+200,https://www.apple.com/in/watch/,Watch,link,www.apple.com,false
+201,https://www.apple.com/in/airpods/,AirPods,link,www.apple.com,false
+202,https://www.apple.com/in/tv-home/,TV & Home,link,www.apple.com,false
+203,https://www.apple.com/in/airtag/,AirTag,link,www.apple.com,false
+204,https://www.apple.com/in/shop/goto/buy_accessories,Accessories,link,www.apple.com,false
+205,https://www.apple.com/in/shop/goto/giftcards,Gift Cards,link,www.apple.com,false
+206,https://www.apple.com/in/wallet/,Wallet,link,www.apple.com,false
+207,https://account.apple.com/in/,Manage Your Apple Account,link,account.apple.com,true
+208,https://www.apple.com/in/shop/goto/account,Apple Store Account,link,www.apple.com,false
+209,https://www.icloud.com/,iCloud.com,link,www.icloud.com,true
+210,https://www.apple.com/in/apple-one/,Apple One,link,www.apple.com,false
+211,https://www.apple.com/in/apple-tv-plus/,Apple TV+,link,www.apple.com,false
+212,https://www.apple.com/in/apple-music/,Apple Music,link,www.apple.com,false
+213,https://www.apple.com/in/apple-arcade/,Apple Arcade,link,www.apple.com,false
+214,https://www.apple.com/in/apple-podcasts/,Apple Podcasts,link,www.apple.com,false
+215,https://www.apple.com/in/apple-books/,Apple Books,link,www.apple.com,false
+216,https://www.apple.com/in/app-store/,App Store,link,www.apple.com,false
+217,https://www.apple.com/in/retail/,Find a Store,link,www.apple.com,false
+218,https://www.apple.com/in/retail/geniusbar/,Genius Bar,link,www.apple.com,false
+219,https://www.apple.com/in/today/,Today at Apple,link,www.apple.com,false
+220,https://www.apple.com/in/today/groups/,Group Reservations,link,www.apple.com,false
+221,https://www.apple.com/in/today/camp/,Apple Camp,link,www.apple.com,false
+222,https://www.apple.com/in/shop/goto/trade_in,Apple Trade In,link,www.apple.com,false
+223,https://www.apple.com/in/shop/goto/ways_to_buy,Ways to Buy,link,www.apple.com,false
+224,https://www.apple.com/in/recycling/,Recycling Programme,link,www.apple.com,false
+225,https://www.apple.com/in/shop/goto/order/list,Order Status,link,www.apple.com,false
+226,https://www.apple.com/in/shop/goto/help,Shopping Help,link,www.apple.com,false
+227,https://www.apple.com/in/business/,Apple and Business,link,www.apple.com,false
+228,https://www.apple.com/in/retail/business/,Shop for Business,link,www.apple.com,false
+229,https://www.apple.com/in/education/,Apple and Education,link,www.apple.com,false
+230,https://www.apple.com/in/education/k12/how-to-buy/,Shop for Education,link,www.apple.com,false
+231,https://www.apple.com/in/shop/goto/educationrouting,Shop for University,link,www.apple.com,false
+232,https://www.apple.com/in/healthcare/,Apple in Healthcare,link,www.apple.com,false
+233,https://www.apple.com/in/healthcare/mac/,Mac in Healthcare,link,www.apple.com,false
+234,https://www.apple.com/in/healthcare/apple-watch/,Health on Apple Watch,link,www.apple.com,false
+235,https://www.apple.com/in/accessibility/,Accessibility,link,www.apple.com,false
+236,https://www.apple.com/in/education-initiative/,Education,link,www.apple.com,false
+237,https://www.apple.com/in/environment/,Environment,link,www.apple.com,false
+238,https://www.apple.com/in/privacy/,Privacy,link,www.apple.com,false
+239,https://www.apple.com/in/supply-chain/,Supply Chain Innovation,link,www.apple.com,false
+240,https://www.apple.com/in/newsroom/,Newsroom,link,www.apple.com,false
+241,https://www.apple.com/in/leadership/,Apple Leadership,link,www.apple.com,false
+242,https://www.apple.com/careers/in/,Career Opportunities,link,www.apple.com,false
+243,https://investor.apple.com/,Investors,link,investor.apple.com,true
+244,https://www.apple.com/compliance/,Ethics & Compliance,link,www.apple.com,false
+245,https://www.apple.com/in/apple-events/,Events,link,www.apple.com,false
+246,https://www.apple.com/in/contact/,Contact Apple,link,www.apple.com,false
+247,https://www.apple.com/in/retail/,Find an Apple Store,link,www.apple.com,false
+248,https://locate.apple.com/in/en/,other retailer,link,locate.apple.com,true
+249,tel:000800%C2%A0040%C2%A01966,000800 040 1966,link,,true
+250,https://www.apple.com/choose-country-region/,India,link,www.apple.com,false
+251,https://www.apple.com/in/legal/privacy/,Privacy Policy,link,www.apple.com,false
+252,https://www.apple.com/in/legal/terms/site.html,Terms of Use,link,www.apple.com,false
+253,https://www.apple.com/in/shop/goto/help/sales_refunds,Sales Policy,link,www.apple.com,false
+254,https://www.apple.com/in/legal/,Legal,link,www.apple.com,false
+255,https://www.apple.com/in/sitemap/,Site Map,link,www.apple.com,false
+256,https://www.apple.com/in/privacy/features/,View all privacy features,link,www.apple.com,false
+257,https://support.apple.com/en-in/guide/personal-safety/welcome/web,Learn more about personal safety with Apple devices,link,support.apple.com,true
+258,https://www.apple.com/v/privacy/w/images/overview/privacy_icon_safari__ddxri29vssya_large.png,,image,www.apple.com,false
+259,https://www.apple.com/v/privacy/w/images/overview/privacy_icon_chrome__cj6xupn3eoia_large.png,,image,www.apple.com,false

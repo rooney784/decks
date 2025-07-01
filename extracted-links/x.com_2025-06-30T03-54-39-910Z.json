@@ -1,0 +1,136 @@
+{
+  "pageUrl": "https://x.com/",
+  "pageTitle": "X. It’s what’s happening / X",
+  "domain": "x.com",
+  "timestamp": "2025-06-30T03:54:39.910Z",
+  "links": [
+    {
+      "index": 1,
+      "url": "https://x.com/i/flow/signup",
+      "text": "Create account",
+      "isExternal": false,
+      "domain": "x.com",
+      "type": "link"
+    },
+    {
+      "index": 2,
+      "url": "https://x.com/tos",
+      "text": "Terms of Service",
+      "isExternal": false,
+      "domain": "x.com",
+      "type": "link"
+    },
+    {
+      "index": 3,
+      "url": "https://x.com/privacy",
+      "text": "Privacy Policy",
+      "isExternal": false,
+      "domain": "x.com",
+      "type": "link"
+    },
+    {
+      "index": 4,
+      "url": "https://help.x.com/rules-and-policies/twitter-cookies",
+      "text": "Cookie Use.",
+      "isExternal": true,
+      "domain": "help.x.com",
+      "type": "link"
+    },
+    {
+      "index": 5,
+      "url": "https://x.com/login",
+      "text": "Sign in",
+      "isExternal": false,
+      "domain": "x.com",
+      "type": "link"
+    },
+    {
+      "index": 6,
+      "url": "https://grok.com/",
+      "text": "Get Grok",
+      "isExternal": true,
+      "domain": "grok.com",
+      "type": "link"
+    },
+    {
+      "index": 7,
+      "url": "https://about.x.com/",
+      "text": "About",
+      "isExternal": true,
+      "domain": "about.x.com",
+      "type": "link"
+    },
+    {
+      "index": 8,
+      "url": "https://help.x.com/using-x/download-the-x-app",
+      "text": "Get the X app",
+      "isExternal": true,
+      "domain": "help.x.com",
+      "type": "link"
+    },
+    {
+      "index": 9,
+      "url": "https://grok.com/",
+      "text": "Get the Grok app",
+      "isExternal": true,
+      "domain": "grok.com",
+      "type": "link"
+    },
+    {
+      "index": 10,
+      "url": "https://careers.x.com/",
+      "text": "Careers",
+      "isExternal": true,
+      "domain": "careers.x.com",
+      "type": "link"
+    },
+    {
+      "index": 11,
+      "url": "https://x.com/tos",
+      "text": "Terms of Service",
+      "isExternal": false,
+      "domain": "x.com",
+      "type": "link"
+    },
+    {
+      "index": 12,
+      "url": "https://x.com/privacy",
+      "text": "Privacy Policy",
+      "isExternal": false,
+      "domain": "x.com",
+      "type": "link"
+    },
+    {
+      "index": 13,
+      "url": "https://support.x.com/articles/20170514",
+      "text": "Cookie Policy",
+      "isExternal": true,
+      "domain": "support.x.com",
+      "type": "link"
+    },
+    {
+      "index": 14,
+      "url": "https://developer.x.com/",
+      "text": "Developers",
+      "isExternal": true,
+      "domain": "developer.x.com",
+      "type": "link"
+    },
+    {
+      "index": 15,
+      "url": "https://ads.x.com/?ref=gl-tw-tw-twitter-advertise",
+      "text": "Advertising",
+      "isExternal": true,
+      "domain": "ads.x.com",
+      "type": "link"
+    },
+    {
+      "index": 16,
+      "url": "https://x.com/settings",
+      "text": "Settings",
+      "isExternal": false,
+      "domain": "x.com",
+      "type": "link"
+    }
+  ]
+}

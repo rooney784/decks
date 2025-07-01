@@ -1,0 +1,17 @@
+Index,URL,Text,Type,Domain,IsExternal
+1,https://x.com/i/flow/signup,Create account,link,x.com,false
+2,https://x.com/tos,Terms of Service,link,x.com,false
+3,https://x.com/privacy,Privacy Policy,link,x.com,false
+4,https://help.x.com/rules-and-policies/twitter-cookies,Cookie Use.,link,help.x.com,true
+5,https://x.com/login,Sign in,link,x.com,false
+6,https://grok.com/,Get Grok,link,grok.com,true
+7,https://about.x.com/,About,link,about.x.com,true
+8,https://help.x.com/using-x/download-the-x-app,Get the X app,link,help.x.com,true
+9,https://grok.com/,Get the Grok app,link,grok.com,true
+10,https://careers.x.com/,Careers,link,careers.x.com,true
+11,https://x.com/tos,Terms of Service,link,x.com,false
+12,https://x.com/privacy,Privacy Policy,link,x.com,false
+13,https://support.x.com/articles/20170514,Cookie Policy,link,support.x.com,true
+14,https://developer.x.com/,Developers,link,developer.x.com,true
+15,https://ads.x.com/?ref=gl-tw-tw-twitter-advertise,Advertising,link,ads.x.com,true
+16,https://x.com/settings,Settings,link,x.com,false

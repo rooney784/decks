@@ -1,0 +1,144 @@
+{
+  "pageUrl": "https://x.com/queenhaley___/with_replies",
+  "pageTitle": "Posts with replies by Haley nia (@queenhaley___) / X",
+  "domain": "x.com",
+  "timestamp": "2025-06-29T13:46:29.464Z",
+  "totalLinks": 19,
+  "links": [
+    {
+      "index": 1,
+      "url": "https://x.com/login",
+      "text": "Log in",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 2,
+      "url": "https://x.com/i/flow/signup",
+      "text": "Sign up",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 3,
+      "url": "https://x.com/",
+      "text": "",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 4,
+      "url": "https://x.com/queenhaley___/header_photo",
+      "text": "",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 5,
+      "url": "https://x.com/queenhaley___/photo",
+      "text": "",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 6,
+      "url": "https://x.com/queenhaley___/following",
+      "text": "2,852 Following",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 7,
+      "url": "https://x.com/queenhaley___/verified_followers",
+      "text": "130 Followers",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 8,
+      "url": "https://x.com/queenhaley___",
+      "text": "Posts",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 9,
+      "url": "https://x.com/queenhaley___/with_replies",
+      "text": "Replies",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 10,
+      "url": "https://x.com/queenhaley___/media",
+      "text": "Media",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 11,
+      "url": "https://x.com/i/flow/signup",
+      "text": "Create account",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 12,
+      "url": "https://x.com/tos",
+      "text": "Terms of Service",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 13,
+      "url": "https://x.com/privacy",
+      "text": "Privacy Policy",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 14,
+      "url": "https://help.x.com/rules-and-policies/twitter-cookies",
+      "text": "Cookie Use.",
+      "isExternal": true,
+      "domain": "help.x.com"
+    },
+    {
+      "index": 15,
+      "url": "https://x.com/tos",
+      "text": "Terms of Service",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 16,
+      "url": "https://x.com/privacy",
+      "text": "Privacy Policy",
+      "isExternal": false,
+      "domain": "x.com"
+    },
+    {
+      "index": 17,
+      "url": "https://support.x.com/articles/20170514",
+      "text": "Cookie Policy",
+      "isExternal": true,
+      "domain": "support.x.com"
+    },
+    {
+      "index": 18,
+      "url": "https://pbs.twimg.com/profile_banners/1460887925227413507/1650468032/600x200",
+      "text": "",
+      "isExternal": true,
+      "domain": "pbs.twimg.com",
+      "type": "image"
+    },
+    {
+      "index": 19,
+      "url": "https://pbs.twimg.com/profile_images/1672426299065786368/9xjQVw8w_200x200.jpg",
+      "text": "Opens profile photo",
+      "isExternal": true,
+      "domain": "pbs.twimg.com",
+      "type": "image"
+    }
+  ]
+}

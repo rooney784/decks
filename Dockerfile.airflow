@@ -1,0 +1,106 @@
+FROM apache/airflow:2.7.1-python3.10 AS airflow-base
+
+# Switch to root to install system dependencies
+USER root
+
+# Install system dependencies including Node.js and Chrome dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg \
+    ca-certificates \
+    build-essential \
+    wget \
+    unzip \
+    xvfb \
+    libatk1.0-0 \
+    libatk-bridge2.0-0 \
+    libcups2 \
+    libdrm2 \
+    libxkbcommon0 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxfixes3 \
+    libxrandr2 \
+    libgbm1 \
+    libasound2 \
+    libgl1 \
+    libglib2.0-0 \
+    libnss3 \
+    libx11-6 \
+    libxcb1 \
+    libxcursor1 \
+    libxext6 \
+    libxi6 \
+    libxtst6 \
+    fonts-liberation \
+    libappindicator3-1 \
+    lsb-release \
+    xdg-utils \
+    dbus-x11 \
+    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Google Chrome
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome-keyring.gpg \
+    && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome-keyring.gpg] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
+    && apt-get update \
+    && apt-get install -y google-chrome-stable \
+    && rm -rf /var/lib/apt/lists/*
+
+# Verify Node.js installation
+RUN node --version && npm --version
+
+# Create necessary directories and set permissions
+RUN mkdir -p /opt/airflow/src /opt/airflow/logs /opt/airflow/workflows /opt/airflow/extracted-links /opt/airflow/filtered-links \
+    && chown -R airflow:root /opt/airflow/src /opt/airflow/logs /opt/airflow/workflows /opt/airflow/extracted-links /opt/airflow/filtered-links
+
+# Copy package.json and install npm dependencies
+COPY --chown=airflow:root package.json /opt/airflow/src/package.json
+WORKDIR /opt/airflow/src
+
+# Install npm dependencies with verification
+RUN npm install && \
+    echo "=== NPM INSTALL VERIFICATION ===" && \
+    npm list --depth=0 && \
+    echo "=== CHECKING PUPPETEER-CORE ===" && \
+    npm list puppeteer-core && \
+    echo "=== NODE_MODULES DIRECTORY ===" && \
+    ls -la node_modules/ && \
+    echo "=== PUPPETEER-CORE DIRECTORY ===" && \
+    ls -la node_modules/puppeteer-core/ || echo "puppeteer-core not found" && \
+    chmod -R 775 /opt/airflow/src/node_modules
+
+# Set Chrome binary path for Puppeteer
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
+ENV DISPLAY=:99
+
+# Switch back to airflow user
+USER airflow
+
+# Set working directory back to airflow default
+WORKDIR /opt/airflow
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir \
+    google-genai \
+    psycopg2-binary>=2.9.6 \
+    requests \
+    beautifulsoup4==4.12.2 \
+    selenium==4.15.2 \
+    python-dotenv==1.0.0 \
+    pymongo>=4.6.0 \
+    motor>=3.3.2
+
+# Add a final verification step
+USER root
+RUN echo "=== FINAL VERIFICATION ===" && \
+    ls -la /opt/airflow/src/ && \
+    echo "=== NODE_MODULES EXISTS? ===" && \
+    ls -la /opt/airflow/src/node_modules/ || echo "node_modules not found!" && \
+    echo "=== PACKAGE.JSON CONTENT ===" && \
+    cat /opt/airflow/src/package.json || echo "package.json not found!"
+
+USER airflow

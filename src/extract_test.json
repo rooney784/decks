@@ -1,0 +1,19 @@
+{
+  "pageUrl": "https://example.com/",
+  "pageTitle": "Example Domain",
+  "domain": "example.com",
+  "timestamp": "2025-07-01T15:55:44.781Z",
+  "totalAnchors": 1,
+  "totalImages": 0,
+  "links": [
+    {
+      "index": 1,
+      "url": "https://www.iana.org/domains/example",
+      "text": "More information...",
+      "isExternal": true,
+      "domain": "www.iana.org",
+      "type": "link",
+      "isTwitterLink": false
+    }
+  ]
+}

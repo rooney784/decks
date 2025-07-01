@@ -1,0 +1,24 @@
+{
+  "name": "automa-workspace",
+  "version": "1.0.0",
+  "description": "Workspace for Automa automation and link extraction",
+  "main": "index.js",
+  "scripts": {
+    "extract-links": "node open_and_extract.js",
+    "inject-workflow": "node injectworkflow.js",
+    "start": "node main.py"
+  },
+  "dependencies": {
+    "dotenv": "^17.0.0",
+    "pg": "^8.16.3",
+    "puppeteer-core": "^24.11.1"
+  },
+  "keywords": [
+    "automa",
+    "automation",
+    "link-extraction",
+    "chrome-extension"
+  ],
+  "author": "",
+  "license": "ISC"
+}
