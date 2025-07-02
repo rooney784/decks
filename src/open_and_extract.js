@@ -1,9 +1,13 @@
 const puppeteer = require('puppeteer-core');
 const { Client } = require('pg');
+const { MongoClient } = require('mongodb');
 const fs = require('fs/promises');
 const path = require('path');
 const dns = require('dns').promises;
 require('dotenv').config();
+
+// MongoDB URI from environment
+const MONGO_URI = process.env.MONGODB_URI || 'mongodb://admin:admin123@mongodb:27017/messages_db?authSource=admin';
 
 // Helper functions
 async function canResolve(hostname) {
@@ -125,7 +129,7 @@ async function importAndExecuteWorkflows(browser) {
   return workflows.length;
 }
 
-// Enhanced link extraction function with automatic navigation
+// Enhanced link extraction function with automatic navigation and MongoDB integration
 async function extractLinksFromPage(browser, testMode = false, targetUrl = null) {
   console.log('🔗 Starting link extraction...');
   
@@ -275,12 +279,13 @@ async function extractLinksFromPage(browser, testMode = false, targetUrl = null)
   console.log(`💾 JSON exported to ${path.join(__dirname, 'extract_test.json')}`);
 
   if (testMode) {
-    console.log('🧪 Test mode: skipping DB insert and CSV export');
+    console.log('🧪 Test mode: skipping DB insert, CSV export, and MongoDB update');
     return extracted;
   }
 
   // Database operations (only if links were found)
   if (extracted.links.length > 0) {
+    // PostgreSQL operations
     const envUrl = process.env.DATABASE_URL;
     if (!envUrl) throw new Error('DATABASE_URL not set in .env');
     const dbUrl = new URL(envUrl);
@@ -316,8 +321,58 @@ async function extractLinksFromPage(browser, testMode = false, targetUrl = null)
     extracted.links.forEach(l => rows.push([l.index, escapeCsv(l.url), escapeCsv(l.text), l.type, escapeCsv(l.domain), l.isExternal]));
     await fs.writeFile(path.join(outDir, `${base}.csv`), rows.map(r => r.join(',')).join('\n'));
     console.log(`📊 CSV saved: ${path.join(outDir, `${base}.csv`)}`);
+
+    // MongoDB workflow update operations
+    console.log('🔄 Starting MongoDB workflow updates...');
+    const mongoClient = new MongoClient(MONGO_URI);
+    
+    try {
+      await mongoClient.connect();
+      console.log('✅ Connected to MongoDB');
+      
+      const db = mongoClient.db(); // defaults to messages_db from URI
+      const workflowsCollection = db.collection('workflows');
+      const timestamp = new Date().toISOString();
+      
+      let updatedCount = 0;
+      
+      for (const l of extracted.links) {
+        const result = await workflowsCollection.updateOne(
+          { url: { $exists: false } }, // update only if url is missing
+          { 
+            $set: { 
+              url: l.url, 
+              updated_at: timestamp,
+              link_text: l.text,
+              link_domain: l.domain,
+              link_type: l.type,
+              is_external: l.isExternal
+            } 
+          },
+          { sort: { created_at: -1 } } // update newest first
+        );
+        
+        if (result.modifiedCount > 0) {
+          updatedCount++;
+          console.log(`📝 Updated workflow with URL: ${l.url.substring(0, 60)}...`);
+        }
+      }
+      
+      console.log(`✅ Updated ${updatedCount} MongoDB workflows with URLs`);
+      
+      // Optional: Log total workflows without URLs remaining
+      const remainingCount = await workflowsCollection.countDocuments({ url: { $exists: false } });
+      console.log(`📊 Workflows still without URLs: ${remainingCount}`);
+      
+    } catch (mongoError) {
+      console.error('❌ Failed to update MongoDB workflows:', mongoError.message);
+    } finally {
+      await mongoClient.close();
+      console.log('🔌 MongoDB connection closed');
+    }
+
   } else {
-    console.log('⚠️ No links found, skipping database and file operations');
+    console.log('⚠️ No links found, skipping database, file, and MongoDB operations');
   }
 
   return extracted;
@@ -418,6 +473,8 @@ Options:
 
 Environment Variables:
   DEFAULT_EXTRACTION_URL   Default URL to visit if no pages are found
+  DATABASE_URL            PostgreSQL connection string
+  MONGODB_URI             MongoDB connection string (default: mongodb://admin:admin123@mongodb:27017/messages_db?authSource=admin)
 
 Examples:
   node integrated-script.js                           # Run both phases in production mode
