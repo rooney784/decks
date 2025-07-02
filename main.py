@@ -11,12 +11,21 @@ from urllib.parse import urlparse
 import uuid
 from PIL import Image
 from pymongo import MongoClient
+import threading
+from functools import lru_cache
+
+# Configure page for better performance
+st.set_page_config(
+    page_title="Assignment Helper Pro",
+    page_icon="📝",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 # Get the absolute path of the current directory
 current_dir = os.path.abspath(os.path.dirname(__file__))
 
-# Add pathස
-
+# Add path
 sys.path.append(os.path.join(current_dir, 'src'))
 
 # Import your modules
@@ -33,12 +42,44 @@ load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql+psycopg2://airflow:airflow@postgres:5432/messages")
 MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://admin:admin123@mongodb:27017/messages_db?authSource=admin")
 
-# MongoDB connection
-mongo_client = MongoClient(MONGODB_URI)
-mongo_db = mongo_client['messages_db']
+# Initialize session state ONCE
+def init_session_state():
+    """Initialize session state variables only if they don't exist"""
+    defaults = {
+        'current_action': None,
+        'selected_account': '@assignment_helper',
+        'confirm_delete': None,
+        'log_messages': [],
+        'selected_workflow': None,
+        'db_connection': None,
+        'mongo_client': None,
+        'last_stats_update': None,
+        'cached_stats': None,
+        'last_workflow_update': None,
+        'cached_workflows': None
+    }
+    
+    for key, value in defaults.items():
+        if key not in st.session_state:
+            st.session_state[key] = value
 
+init_session_state()
+
+@st.cache_resource
+def get_mongo_client():
+    """Create and cache MongoDB connection"""
+    try:
+        client = MongoClient(MONGODB_URI, serverSelectionTimeoutMS=5000)
+        # Test connection
+        client.admin.command('ping')
+        return client
+    except Exception as e:
+        st.error(f"❌ Error connecting to MongoDB: {str(e)}")
+        return None
+
+@st.cache_resource
 def get_db_connection():
-    """Create a connection to the PostgreSQL database"""
+    """Create and cache PostgreSQL database connection"""
     try:
         if DATABASE_URL.startswith("host="):
             conn = psycopg2.connect(DATABASE_URL)
@@ -54,33 +95,27 @@ def get_db_connection():
             conn = psycopg2.connect(**conn_params)
         return conn
     except Exception as e:
-        st.error(f"❌ Error connecting to database: {str(e)}")
+        st.error(f"❌ Error connecting to PostgreSQL: {str(e)}")
         return None
 
-# Initialize session state
-if 'current_action' not in st.session_state:
-    st.session_state['current_action'] = None
-if 'selected_account' not in st.session_state:
-    st.session_state['selected_account'] = None
-if 'confirm_delete' not in st.session_state:
-    st.session_state['confirm_delete'] = None
-if 'log_messages' not in st.session_state:
-    st.session_state['log_messages'] = []
-if 'selected_workflow' not in st.session_state:
-    st.session_state['selected_workflow'] = None
-
 def log_message(message, level="info"):
-    """Log message to session state and print to console"""
+    """Log message to session state efficiently"""
     timestamp = datetime.now().strftime("%H:%M:%S")
     log_entry = f"[{timestamp}] {message}"
+    
+    # Limit log size to prevent memory issues
+    if len(st.session_state['log_messages']) > 50:
+        st.session_state['log_messages'] = st.session_state['log_messages'][-25:]
+    
     st.session_state['log_messages'].append((level, log_entry))
-    print(log_entry)
 
 def display_logs():
-    """Display log messages in the UI"""
+    """Display log messages efficiently"""
     if st.session_state['log_messages']:
-        with st.expander("📝 Process Logs", expanded=True):
-            for level, message in st.session_state['log_messages']:
+        with st.expander("📝 Process Logs", expanded=False):
+            # Only show last 10 messages to improve performance
+            recent_logs = st.session_state['log_messages'][-10:]
+            for level, message in recent_logs:
                 if level == "error":
                     st.error(message, icon="🚨")
                 elif level == "warning":
@@ -94,190 +129,197 @@ def clear_logs():
     """Clear log messages"""
     st.session_state['log_messages'] = []
 
-@st.cache_data
-def fetch_workflows():
-    """Fetch workflows from MongoDB with caching"""
+@st.cache_data(ttl=300)  # Cache for 5 minutes
+def fetch_workflows_cached():
+    """Fetch workflows from MongoDB with aggressive caching"""
     try:
-        workflows = mongo_db.workflows.find().sort("created_at", -1)
-        return list(workflows)
+        mongo_client = get_mongo_client()
+        if not mongo_client:
+            return []
+        
+        mongo_db = mongo_client['messages_db']
+        workflows = list(mongo_db.workflows.find().sort("created_at", -1).limit(100))  # Limit results
+        return workflows
     except Exception as e:
         st.error(f"❌ Error fetching workflows: {str(e)}")
-        log_message(f"Error fetching workflows: {str(e)}", "error")
         return []
 
+@st.cache_data(ttl=300)  # Cache for 5 minutes
+def get_message_stats_cached():
+    """Get message statistics with caching"""
+    try:
+        return get_message_stats()
+    except Exception as e:
+        st.error(f"❌ Error getting stats: {str(e)}")
+        return None
+
 def show_workflows():
-    """Display workflows stored in MongoDB with clear data functionality"""
+    """Display workflows with optimized performance"""
     st.subheader("📋 Workflows")
+    
     with st.expander("ℹ️ About this feature"):
-        st.write("View all workflows stored in the database, including their name, associated tweet and message, and creation date. Use the 'Clear Data' button to delete all workflows (requires confirmation).")
+        st.write("View workflows stored in the database. Data is cached for 5 minutes for better performance.")
     
-    # Fetch workflows using cached function
-    workflow_list = fetch_workflows()
+    # Use cached function
+    workflow_list = fetch_workflows_cached()
     
-    if workflow_list:
-        # Prepare data for display
-        workflow_data = [
-            {
-                "Workflow ID": wf["workflow_id"],
-                "Name": wf["name"],
-                "Tweet ID": wf.get("tweet_id", "N/A"),
-                "Message ID": wf.get("message_id", "N/A"),
-                "Created At": wf["created_at"],
-            }
-            for wf in workflow_list
-        ]
-        
-        # Display workflows in a table without key parameter
-        st.dataframe(
-            pd.DataFrame(workflow_data),
-            hide_index=True,
-            use_container_width=True
-        )
-        
-        # Workflow selection dropdown with stable state
-        selected_workflow = st.selectbox(
-            "Select Workflow to View Details",
-            options=[wf["workflow_id"] for wf in workflow_list],
-            format_func=lambda x: next(wf["name"] for wf in workflow_list if wf["workflow_id"] == x),
-            key="workflow_select",
-            index=workflow_list.index(next((wf for wf in workflow_list if wf["workflow_id"] == st.session_state['selected_workflow']), workflow_list[0])) if st.session_state['selected_workflow'] in [wf["workflow_id"] for wf in workflow_list] else 0
-        )
-        
-        # Update session state
-        if selected_workflow != st.session_state['selected_workflow']:
-            st.session_state['selected_workflow'] = selected_workflow
-        
-        # Display workflow JSON
-        if selected_workflow:
-            with st.expander("📄 Workflow JSON", expanded=False):
-                workflow = next(wf for wf in workflow_list if wf["workflow_id"] == selected_workflow)
+    if not workflow_list:
+        st.info("No workflows found in the database.")
+        return
+    
+    # Prepare data more efficiently
+    workflow_data = []
+    for wf in workflow_list:
+        workflow_data.append({
+            "Workflow ID": wf["workflow_id"],
+            "Name": wf["name"],
+            "Tweet ID": wf.get("tweet_id", "N/A"),
+            "Message ID": wf.get("message_id", "N/A"),
+            "Created At": wf["created_at"].strftime("%Y-%m-%d %H:%M") if isinstance(wf["created_at"], datetime) else str(wf["created_at"]),
+        })
+    
+    # Display workflows table
+    df = pd.DataFrame(workflow_data)
+    st.dataframe(df, hide_index=True, use_container_width=True, height=400)
+    
+    # Workflow selection with better state management
+    workflow_options = [wf["workflow_id"] for wf in workflow_list]
+    workflow_names = {wf["workflow_id"]: wf["name"] for wf in workflow_list}
+    
+    selected_workflow = st.selectbox(
+        "Select Workflow to View Details",
+        options=workflow_options,
+        format_func=lambda x: workflow_names.get(x, x),
+        key="workflow_select_optimized"
+    )
+    
+    # Display workflow JSON only when selected
+    if selected_workflow:
+        with st.expander("📄 Workflow JSON", expanded=False):
+            workflow = next((wf for wf in workflow_list if wf["workflow_id"] == selected_workflow), None)
+            if workflow:
                 st.json(workflow["content"])
-        
-        # Clear Data button with confirmation
-        st.write("### 🗑️ Clear Workflow Data")
-        if st.button("Clear All Workflows", type="secondary", key="clear_workflows"):
-            st.session_state['confirm_delete'] = True
-        
-        if st.session_state['confirm_delete']:
-            st.warning("⚠️ Are you sure you want to delete all workflows? This action cannot be undone.")
-            col1, col2 = st.columns(2)
-            with col1:
-                if st.button("Confirm Delete", type="primary"):
-                    try:
+    
+    # Clear Data section
+    st.write("### 🗑️ Clear Workflow Data")
+    if st.button("Clear All Workflows", type="secondary", key="clear_workflows_opt"):
+        st.session_state['confirm_delete'] = True
+    
+    if st.session_state.get('confirm_delete'):
+        st.warning("⚠️ Are you sure you want to delete all workflows? This action cannot be undone.")
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("Confirm Delete", type="primary", key="confirm_delete_opt"):
+                try:
+                    mongo_client = get_mongo_client()
+                    if mongo_client:
+                        mongo_db = mongo_client['messages_db']
                         result = mongo_db.workflows.delete_many({})
                         deleted_count = result.deleted_count
-                        st.session_state['confirm_delete'] = None
-                        log_message(f"Successfully deleted {deleted_count} workflows from MongoDB", "success")
+                        st.session_state['confirm_delete'] = False
+                        
+                        # Clear cache
+                        fetch_workflows_cached.clear()
+                        
+                        log_message(f"Successfully deleted {deleted_count} workflows", "success")
                         st.success(f"✅ Deleted {deleted_count} workflows")
-                        # Clear cache to refresh table
-                        fetch_workflows.clear()
                         st.rerun()
-                    except Exception as e:
-                        log_message(f"Error deleting workflows: {str(e)}", "error")
-                        st.error(f"❌ Error deleting workflows: {str(e)}")
-            with col2:
-                if st.button("Cancel"):
-                    st.session_state['confirm_delete'] = None
-                    log_message("Clear workflows action cancelled", "info")
-                    st.rerun()
-        
-        log_message("Successfully retrieved workflows from MongoDB", "success")
-    else:
-        st.info("No workflows found in the database.")
-        log_message("No workflows found in MongoDB", "warning")
-    
-    display_logs()
+                except Exception as e:
+                    log_message(f"Error deleting workflows: {str(e)}", "error")
+        with col2:
+            if st.button("Cancel", key="cancel_delete_opt"):
+                st.session_state['confirm_delete'] = False
+                st.rerun()
 
+# Main UI with optimized layout
 st.title("📝 Assignment Helper Pro")
 st.caption("AI-powered Twitter assistant for assignment help seekers")
 
 # ==============================
-# SIDEBAR - ACCOUNT MANAGEMENT
+# SIDEBAR - OPTIMIZED
 # ==============================
 with st.sidebar:
     st.header("🔐 Account Management")
     
     account_options = ["@assignment_helper", "@study_assistant", "@homework_pro"]
-    selected_account = st.selectbox("Select Account", account_options, key="account_select")
+    selected_account = st.selectbox(
+        "Select Account", 
+        account_options, 
+        key="account_select",
+        index=account_options.index(st.session_state.get('selected_account', account_options[0]))
+    )
     st.session_state['selected_account'] = selected_account
     
     st.divider()
     
     st.header("⚙️ Actions")
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("📝 Create Messages", use_container_width=True):
+    
+    # Use columns for better layout
+    action_col1, action_col2 = st.columns(2)
+    
+    with action_col1:
+        if st.button("📝 Messages", use_container_width=True, key="btn_messages"):
             st.session_state['current_action'] = 'create_messages'
             clear_logs()
-        if st.button("🤖 Create Automa", use_container_width=True):
-            st.session_state['current_action'] = 'automa'
-            clear_logs()
-    with col2:
-        if st.button("📊 Check Stats", use_container_width=True):
+        
+        if st.button("📊 Stats", use_container_width=True, key="btn_stats"):
             st.session_state['current_action'] = 'statistics'
             clear_logs()
-        if st.button("⚡ Run Scrape", use_container_width=True):
+    
+    with action_col2:
+        if st.button("🤖 Automa", use_container_width=True, key="btn_automa"):
+            st.session_state['current_action'] = 'automa'
+            clear_logs()
+        
+        if st.button("⚡ Scrape", use_container_width=True, key="btn_scrape"):
             st.session_state['current_action'] = 'scrape'
             clear_logs()
     
     st.divider()
     
-    if st.button("📁 View Data", use_container_width=True):
+    # Data and workflow buttons
+    if st.button("📁 View Data", use_container_width=True, key="btn_data"):
         st.session_state['current_action'] = 'view_data'
         clear_logs()
     
-    if st.button("📋 View Workflows", use_container_width=True):
+    if st.button("📋 Workflows", use_container_width=True, key="btn_workflows"):
         st.session_state['current_action'] = 'view_workflows'
         clear_logs()
     
     st.divider()
     
-    st.header("👀 Monitoring")
-    monitoring_col1, monitoring_col2 = st.columns(2)
-    with monitoring_col1:
-        if st.button("🧠 Model", use_container_width=True):
-            st.session_state['current_action'] = 'monitor_model'
-            clear_logs()
-    with monitoring_col2:
-        if st.button("📬 Notifications", use_container_width=True):
-            st.session_state['current_action'] = 'monitor_notifications'
-            clear_logs()
-    
-    if st.button("🎯 Accuracy", use_container_width=True):
-        st.session_state['current_action'] = 'monitor_accuracy'
-        clear_logs()
-    
-    st.divider()
-    
-    st.header("🌐 Browser Actions")
-    if st.button("🔗 Open Links", use_container_width=True, help="Open unprocessed tweet links in your browser"):
+    # Monitoring section - simplified
+    st.header("👀 Quick Actions")
+    if st.button("🔗 Open Links", use_container_width=True, key="btn_links"):
         st.session_state['current_action'] = 'open_links'
         clear_logs()
 
 # ==============================
-# MAIN CONTENT AREA
+# MAIN CONTENT - OPTIMIZED
 # ==============================
 if st.session_state['selected_account']:
-    st.subheader(f"👤 Active Account: {st.session_state['selected_account']}")
+    st.subheader(f"👤 Active: {st.session_state['selected_account']}")
     
-    stats_col1, stats_col2, stats_col3 = st.columns(3)
-    with stats_col1:
-        st.metric("📤 Posts Sent", "142", "+12 today")
-    with stats_col2:
-        st.metric("🔄 Retweets", "87", "+5 today")
-    with stats_col3:
-        st.metric("💬 Messages", "203")
+    # Show cached stats
+    stats = get_message_stats_cached()
+    if stats:
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Total Messages", stats.get('total_messages', 0))
+        col2.metric("Used Messages", stats.get('used_messages', 0))
+        col3.metric("Unused Messages", stats.get('unused_messages', 0))
     
     st.divider()
 
 # ==============================
-# ACTION-SPECIFIC CONTENT
+# ACTION HANDLERS - OPTIMIZED
 # ==============================
-if st.session_state['current_action'] == 'create_messages':
+current_action = st.session_state.get('current_action')
+
+if current_action == 'create_messages':
     st.subheader("💬 Message Generator")
-    st.write("Click the button below to generate and store new assignment help messages")
+    st.write("Generate and store new assignment help messages")
     
-    if st.button("✨ Generate Messages", type="primary"):
+    if st.button("✨ Generate Messages", type="primary", key="gen_messages"):
         with st.status("Creating messages...", expanded=True) as status:
             try:
                 log_message("🔌 Connecting to API...")
@@ -285,324 +327,205 @@ if st.session_state['current_action'] == 'create_messages':
                 result = subprocess.run(
                     ["python3", "src/create_messages/create_messages.py"],
                     capture_output=True,
-                    text=True
+                    text=True,
+                    timeout=60  # Add timeout
                 )
-                
-                log_message(result.stdout)
                 
                 if result.returncode == 0:
                     status.update(label="✅ Messages generated successfully!", state="complete")
                     log_message("Messages saved to database!", "success")
                     
-                    # Show generated messages
-                    latest_messages = get_unused_messages(limit=10)
-                    if latest_messages:
-                        with st.expander("📋 Generated Messages Preview"):
-                            for idx, (message_id, content) in enumerate(latest_messages, 1):
-                                st.write(f"{idx}. {content}")
+                    # Clear stats cache to refresh
+                    get_message_stats_cached.clear()
                     
                     st.balloons()
                 else:
                     status.update(label="❌ Error generating messages", state="error")
-                    log_message(f"Error generating messages: {result.stderr}", "error")
+                    log_message(f"Error: {result.stderr}", "error")
                 
+            except subprocess.TimeoutExpired:
+                log_message("Operation timed out after 60 seconds", "error")
             except Exception as e:
-                status.update(label="❌ Error in message generation", state="error")
-                log_message(f"An error occurred: {str(e)}", "error")
-        
-        display_logs()
-
-elif st.session_state['current_action'] == 'automa':
-    st.subheader("🤖 Workflow Automation")
-    with st.expander("ℹ️ About this feature"):
-        st.write("Generate automated workflows that are stored in MongoDB. Each workflow uses a tweet and a message.")
+                log_message(f"Error: {str(e)}", "error")
     
-    if st.button("🛠️ Generate Workflows", type="primary"):
+    display_logs()
+
+elif current_action == 'automa':
+    st.subheader("🤖 Workflow Automation")
+    st.write("Generate automated workflows stored in MongoDB")
+    
+    if st.button("🛠️ Generate Workflows", type="primary", key="gen_workflows"):
         with st.status("Building workflows...", expanded=True) as status:
             try:
                 log_message("📂 Loading template...")
                 
-                # Generate the workflows
                 total_workflows, success_count, messages_used = generate_automa_workflows()
                 
                 status.update(label=f"✅ {success_count}/{total_workflows} workflows created!", state="complete")
-                log_message(f"Successfully generated {success_count} workflows using {messages_used} messages!", "success")
-                st.balloons()
+                log_message(f"Generated {success_count} workflows using {messages_used} messages!", "success")
                 
-                # Show generated workflows
-                workflows = mongo_db.workflows.find().sort("created_at", -1).limit(success_count)
-                if workflows:
-                    with st.expander("📂 Generated Workflows"):
-                        for wf in workflows:
-                            st.write(f"- {wf['name']} (ID: {wf['workflow_id']}) created at {wf['created_at']}")
+                # Clear workflow cache
+                fetch_workflows_cached.clear()
+                
+                st.balloons()
             
             except Exception as e:
                 status.update(label="❌ Error generating workflows", state="error")
-                log_message(f"An error occurred: {str(e)}", "error")
-        
-        display_logs()
+                log_message(f"Error: {str(e)}", "error")
+    
+    display_logs()
 
-elif st.session_state['current_action'] == 'scrape':
+elif current_action == 'scrape':
     st.subheader("🔍 Twitter Scraper")
     with st.expander("ℹ️ About this feature"):
-        st.write("Scrape a predefined Twitter-like page for links and store them in the database.")
-        st.write(f"**Target URL:** `{os.getenv('URL_TO_SCRAPE')}`")
-        st.info("Note: This may take 15-30 seconds as it loads the page dynamically")
+        st.write("Scrape Twitter-like page for links and store in database.")
+        st.write(f"**Target URL:** `{os.getenv('URL_TO_SCRAPE', 'Not set')}`")
 
-    if st.button("🔍 Scrape Tweets", type="primary", key="scrape_button"):
+    if st.button("🔍 Start Scraping", type="primary", key="start_scrape"):
         progress_bar = st.progress(0)
         status_text = st.empty()
-        result_container = st.container()
-        
-        log_message("🚀 Starting scraping process...")
-        progress_bar.progress(5)
-        time.sleep(0.5)
         
         try:
-            status_text.info("🔄 Initializing browser...")
+            log_message("🚀 Starting scraping process...")
             progress_bar.progress(10)
-            time.sleep(0.5)
             
+            status_text.info("🔄 Initializing browser...")
             raw_links, log_messages, screenshot_path = scrape_links()
             
-            for msg in log_messages:
-                if "❌" in msg:
-                    log_message(msg.replace("❌", "").strip(), "error")
-                elif "✅" in msg:
-                    log_message(msg.replace("✅", "").strip(), "success")
-                else:
-                    log_message(msg)
-            
-            progress_bar.progress(40)
-            status_text.info("Processing links...")
-            time.sleep(1)
+            progress_bar.progress(60)
             
             if raw_links:
                 valid_entries = [(str(uuid.uuid4()), link) for link in set(raw_links)]
-                log_message(f"Total {len(valid_entries)} unique URLs", "success")
+                log_message(f"Found {len(valid_entries)} unique URLs", "success")
                 
-                progress_bar.progress(70)
-                status_text.info("Saving to database...")
-                time.sleep(1)
+                progress_bar.progress(80)
+                save_tweets_to_db(valid_entries)
+                log_message(f"Saved {len(valid_entries)} links", "success")
                 
-                if valid_entries:
-                    save_tweets_to_db(valid_entries)
-                    log_message(f"Saved {len(valid_entries)} links to database", "success")
-                    
-                    with result_container:
-                        with st.expander("📝 Raw Links (First 20)"):
-                            st.dataframe(pd.DataFrame({'Raw Links': raw_links[:20]}), 
-                                        hide_index=True, height=400)
-                        
-                        if screenshot_path and os.path.exists(screenshot_path):
-                            with st.expander("📷 Page Screenshot"):
-                                st.image(Image.open(screenshot_path), 
-                                        caption="Scraped Page", 
-                                        use_column_width=True)
-                        
-                        with st.expander("📈 Database Stats"):
-                            try:
-                                conn = get_db_connection()
-                                if conn:
-                                    with conn.cursor() as cursor:
-                                        cursor.execute("SELECT COUNT(*) FROM tweets_scraped")
-                                        tweet_count = cursor.fetchone()[0]
-                                        cursor.execute("SELECT * FROM tweets_scraped ORDER BY scraped_time DESC LIMIT 10")
-                                        recent_tweets = pd.DataFrame(
-                                            cursor.fetchall(),
-                                            columns=[desc[0] for desc in cursor.description]
-                                        )
-                                    conn.close()
-                                    
-                                    st.metric("Total Links in Database", tweet_count)
-                                    st.write("Recent Additions:")
-                                    st.dataframe(recent_tweets)
-                                else:
-                                    st.error("❌ Failed to connect to database")
-                            except Exception as e:
-                                st.error(f"❌ Error fetching DB stats: {str(e)}")
-                else:
-                    log_message("⚠️ No links found during scraping!", "warning")
+                # Show results in expandable sections
+                with st.expander("📝 Scraped Links (First 20)", expanded=False):
+                    if raw_links:
+                        st.dataframe(pd.DataFrame({'Links': raw_links[:20]}), height=300)
+                
+                if screenshot_path and os.path.exists(screenshot_path):
+                    with st.expander("📷 Screenshot", expanded=False):
+                        st.image(Image.open(screenshot_path), use_column_width=True)
             else:
-                log_message("⚠️ No links found during scraping!", "warning")
-                
-        except Exception as e:
-            log_message(f"⚠️ Processing error: {str(e)}", "error")
-            st.exception(e)
-        
-        finally:
+                log_message("No links found", "warning")
+            
             progress_bar.progress(100)
             status_text.success("✅ Scraping completed!")
-            time.sleep(1)
-            st.balloons()
-        
-        display_logs()
+            
+        except Exception as e:
+            log_message(f"Scraping error: {str(e)}", "error")
+            st.error(f"❌ Error: {str(e)}")
+    
+    display_logs()
 
-elif st.session_state['current_action'] == 'open_links':
+elif current_action == 'open_links':
     st.subheader("🌐 Open Tweet Links")
-    with st.expander("ℹ️ About this feature", expanded=True):
-        st.write("""
-        **A Chrome browser window will open on your host machine!**
-        - Chrome browser will open with all links in separate tabs
-        - The browser will remain open for your inspection
-        - Close browser manually when you're done
-        """)
-        st.write(f"**Batch Size:** `{os.getenv('OPEN_LINKS', 2)}` links at a time")
-        st.warning("🔐 Ensure you have an X11 server running on your host machine")
-        st.info("📡 On Windows: Use VcXsrv\nOn Mac: Use XQuartz\nOn Linux: X11 should already be installed")
+    with st.expander("ℹ️ About this feature"):
+        st.write("Open unprocessed tweet links in Chrome browser")
+        st.write(f"**Batch Size:** {os.getenv('OPEN_LINKS', 2)} links at a time")
         
-    if st.button("🚀 Open Links Now", type="primary", key="open_links_button", use_container_width=True):
+    if st.button("🚀 Open Links", type="primary", key="open_tweet_links"):
         with st.status("Processing links...", expanded=True) as status:
             try:
                 log_message("🔍 Fetching unprocessed tweets...")
-                time.sleep(0.5)
                 
                 success, opened_urls, _ = open_links_in_browser()
                 
                 if success:
                     status.update(label="✅ Links opened in browser!", state="complete")
-                    log_message(f"Opened {len(opened_urls)} links in browser", "success")
+                    log_message(f"Opened {len(opened_urls)} links", "success")
                     
                     if opened_urls:
                         with st.expander("📝 Opened Links"):
                             for url in opened_urls:
                                 st.markdown(f"- [{url}]({url})")
-                    
-                    st.success("✅ A Chrome window should now be visible on your host machine!")
-                    st.info("ℹ Keep browser open until manually closed")
                 else:
                     status.update(label="⚠️ Some issues occurred", state="complete")
-                    log_message("⚠️ Some issues occurred", "warning")
                 
             except Exception as e:
                 status.update(label="❌ Error opening links", state="error")
-                log_message(f"Error opening links: {str(e)}", "error")
-                st.exception(e)
-            
-        display_logs()
-
-elif st.session_state['current_action'] == 'statistics':
-    st.subheader("📈 Message Statistics")
-    
-    try:
-        stats = get_message_stats()
-        if stats:
-            col1, col2, col3 = st.columns(3)
-            col1.metric("Total Messages", stats['total_messages'])
-            col2.metric("Used Messages", stats['used_messages'])
-            col3.metric("Unused Messages", stats['unused_messages'])
-            
-            st.divider()
-            st.subheader("Distribution by User")
-            
-            for user_id, total, used in stats['user_stats']:
-                unused = total - used
-                st.write(f"### User {user_id}")
-                col1, col2, col3 = st.columns(3)
-                col1.metric("Total", total)
-                col2.metric("Used", used)
-                col3.metric("Unused", unused)
-                
-                usage_percent = (used / total) * 100 if total > 0 else 0
-                st.progress(int(usage_percent))
-                st.caption(f"Usage: {used}/{total} ({usage_percent:.1f}%)")
-                
-                log_message("Successfully retrieved message statistics", "success")
-        else:
-            log_message("⚠️ Could not retrieve message statistics", "warning")
-    except Exception as e:
-        log_message(f"⚠️ Error getting message stats: {str(e)}", "error")
+                log_message(f"Error: {str(e)}", "error")
     
     display_logs()
 
-elif st.session_state['current_action'] == 'view_data':
-    show_database_viewer()
+elif current_action == 'statistics':
+    st.subheader("📈 Message Statistics")
+    
+    stats = get_message_stats_cached()
+    if stats:
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Total Messages", stats['total_messages'])
+        col2.metric("Used Messages", stats['used_messages'])
+        col3.metric("Unused Messages", stats['unused_messages'])
+        
+        st.divider()
+        
+        if 'user_stats' in stats and stats['user_stats']:
+            st.subheader("📊 User Distribution")
+            
+            for user_id, total, used in stats['user_stats']:
+                unused = total - used
+                usage_percent = (used / total) * 100 if total > 0 else 0
+                
+                with st.container():
+                    st.write(f"**User {user_id}**")
+                    col1, col2, col3 = st.columns(3)
+                    col1.metric("Total", total)
+                    col2.metric("Used", used)
+                    col3.metric("Unused", unused)
+                    st.progress(usage_percent / 100)
+                    st.caption(f"Usage: {usage_percent:.1f}%")
+    else:
+        st.warning("Could not retrieve statistics")
+    
+    display_logs()
 
-elif st.session_state['current_action'] == 'view_workflows':
+elif current_action == 'view_data':
+    try:
+        show_database_viewer()
+    except Exception as e:
+        st.error(f"Error loading database viewer: {str(e)}")
+        log_message(f"Database viewer error: {str(e)}", "error")
+
+elif current_action == 'view_workflows':
     show_workflows()
 
-elif st.session_state['current_action'] == 'monitor_model':
-    st.subheader("🧠 Model Performance Monitoring")
-    
-    st.write("### 📈 Key Metrics")
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Response Quality", "8.7/10", "+0.2 from last week")
-    col2.metric("Relevance Score", "92%", "3% improvement")
-    col3.metric("Engagement Rate", "74.2%", "-2% from last month")
-    
-    st.divider()
-    
-    st.write("### 🔍 Response Analysis")
-    with st.expander("Top Performing Messages"):
-        st.markdown("1. I can help with your assignment! Send me the details. (95%)")
-        st.markdown("2. Professional assignment help available. DM me (92%)")
-    with st.expander("Messages Needing Improvement"):
-        st.markdown("- Homework help - cheap rates! (42%)")
-
-elif st.session_state['current_action'] == 'monitor_notifications':
-    st.subheader("📬 Notification Center")
-    st.markdown("### 🔔 Notify")
-    notifications = [
-        {"time": "2023-10-10 14:30", "type": "success", "content": "✅ Generated 30 new messages"},
-        {"time": "2023-10-10 12:15", "type": "info", "content": "📊 Daily stats report ready"},
-    ]
-    for note in notifications:
-        with st.container(border=True):
-            st.markdown(f"**{note['time']}** ({note['type']})")
-            st.write(note['content'])
-
-elif st.session_state['current_action'] == 'monitor_accuracy':
-    st.subheader("🎯 Accuracy Monitoring")
-    
-    st.write("### 📈 Performance Metrics")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.metric("Correct Responses", "89%", "2% improvement")
-    with col2:
-        st.metric("User Satisfaction", "4.5★", "0.3★ increase")
-    
-    st.divider()
-    
-    st.write("### 🔍 Accuracy Trends")
-    accuracy_data = pd.DataFrame({
-        'Week': ['May 1', 'May 8', 'May 15', 'May 22'],
-        'Accuracy': [82, 85, 84, 87],
-        'Satisfaction': [3.9, 4.0, 4.1, 4.3]
-    })
-    st.line_chart(accuracy_data.set_index('Week'))
-
 # ==============================
-# DEFAULT DASHBOARD VIEW
+# DEFAULT DASHBOARD - SIMPLIFIED
 # ==============================
 else:
     st.subheader("📊 System Dashboard")
     
+    # Quick stats
     col1, col2, col3 = st.columns(3)
-    col1.metric("Total Accounts", "3")
-    col2.metric("Messages Available", "142")
-    col3.metric("Active Workflows", "18")
+    
+    # Get cached stats for dashboard
+    stats = get_message_stats_cached()
+    if stats:
+        col1.metric("Total Messages", stats.get('total_messages', 0))
+        col2.metric("Unused Messages", stats.get('unused_messages', 0))
+    else:
+        col1.metric("Total Messages", "Loading...")
+        col2.metric("Unused Messages", "Loading...")
+    
+    col3.metric("Active Accounts", len(["@assignment_helper", "@study_assistant", "@homework_pro"]))
     
     st.divider()
     
-    st.write("### ⏱️ Recent Activity")
-    activity = pd.DataFrame({
-        'Time': ['2023-10-10 14:30', '2023-10-10 12:15', '2023-10-10 09:45'],
-        'Account': ['@assignment_helper', '@study_assistant', '@homework_pro'],
-        'Action': ['Generated messages', 'Posted workflow', 'Responded to query'],
-        'Status': ['✅ Completed', '🔄 Running', '✅ Completed']
-    })
-    st.dataframe(activity, hide_index=True)
-
-    st.divider()
+    # System status
     st.write("### 🟢 System Status")
-    status_col1, status_col2, status_col3 = st.columns(3)
+    status_col1, status_col2 = st.columns(2)
+    
     with status_col1:
-        st.info("**API Connections**\n\nAll services operational")
+        st.info("**Database Status**\n\n✅ PostgreSQL: Connected\n✅ MongoDB: Connected")
+    
     with status_col2:
-        st.info("**Database**\n\n24.7 MB used\nLast backup: 6h ago")
-    with status_col3:
-        st.info("**Scheduler**\n\nNext run in 32m")
+        st.info("**Recent Activity**\n\n📝 Messages: Active\n🤖 Workflows: Ready")
 
 # Footer
 st.divider()
-st.caption("© 2025 Assignment Helper Pro | AI-powered Twitter assistant")
+st.caption("© 2025 Assignment Helper Pro | Optimized for Performance")
