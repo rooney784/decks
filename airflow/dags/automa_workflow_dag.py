@@ -28,8 +28,6 @@ MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://admin:admin123@mongodb:27017/m
 client = MongoClient(MONGODB_URI)
 db = client['messages_db']
 
-MAX_WORKFLOWS_PER_DAY = int(os.getenv("MAX_WORKFLOWS_PER_DAY", "6"))
-MAX_WORKFLOWS_PER_HOUR = int(os.getenv("MAX_WORKFLOWS_PER_HOUR", "2"))
 WORKFLOW_GENERATION_ENABLED = os.getenv("WORKFLOW_GENERATION_ENABLED", "true").lower() == "true"
 WORKFLOW_TEMPLATE_PATH = "/opt/airflow/src/automata/deck.automa.json"
 
@@ -71,17 +69,6 @@ def log_workflow_generation(name, message_id):
         })
     except Exception as e:
         logger.error(f"Failed to log workflow stat: {e}")
-
-def get_workflow_stats():
-    try:
-        today = datetime.now().date().isoformat()
-        hour = datetime.now().hour
-        daily = db.workflow_stats.count_documents({"date": today})
-        hourly = db.workflow_stats.count_documents({"date": today, "hour": hour})
-        return {"daily": daily, "hourly": hourly}
-    except Exception as e:
-        logger.error(f"Workflow stats error: {e}")
-        return {"daily": 0, "hourly": 0}
 
 def generate_press_key_blocks(sentence, base_item_id):
     words = re.findall(r'\b\w+\b|[^\w\s]', sentence)
@@ -172,20 +159,11 @@ def generate_automa_workflows():
         return 0, 0
 
     ensure_template_file_exists()
-    stats = get_workflow_stats()
-    available = min(MAX_WORKFLOWS_PER_DAY - stats['daily'], MAX_WORKFLOWS_PER_HOUR - stats['hourly'])
-
-    if available <= 0:
-        logger.info("No available workflow slots.")
-        return 0, 0
-
-    messages = get_unused_messages_from_postgres(available)
+    messages = get_unused_messages_from_postgres(6)
     names = ['one', 'two', 'three', 'four', 'five', 'six']
     success = 0
 
     for i, (msg_id, msg_text) in enumerate(messages):
-        if i >= available:
-            break
         name = names[i % len(names)]
         if update_json_with_message(WORKFLOW_TEMPLATE_PATH, name, msg_text, msg_id):
             mark_message_as_used_in_mongo(msg_id)
