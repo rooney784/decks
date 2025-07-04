@@ -38,5 +38,9 @@
   "remoteUser": "root",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
   "workspaceFolder": "/workspace",
-  "postCreateCommand": "chown -R root:root /workspace"
+  "postCreateCommand": "chown -R root:root /workspace",
+  "containerEnv": {
+    "CHROME_DEBUG_URL": "http://chrome-gui:9222",
+    "CHROME_VNC_URL": "http://chrome-gui:6080"
+  }
 }

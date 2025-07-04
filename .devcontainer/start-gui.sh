@@ -139,8 +139,8 @@ if [ ! -d "$LINK_KLIPPER_DIR" ]; then
     fi
 fi
 
-# Create Chrome profile directory
-CHROME_PROFILE_DIR="/tmp/chrome-profile-$(date +%s)"
+# Create Chrome profile directory with fixed name for network access
+CHROME_PROFILE_DIR="/tmp/chrome-profile-shared"
 mkdir -p "$CHROME_PROFILE_DIR"
 echo "📁 Chrome profile directory: $CHROME_PROFILE_DIR"
 
@@ -172,8 +172,9 @@ else
 fi
 
 echo "🚀 Starting Chrome with extensions: $EXTENSION_LIST"
+echo "🌐 Chrome will be accessible to network services at: chrome-gui:9222"
 
-# Start Chrome with comprehensive flags for better GUI compatibility
+# Start Chrome with comprehensive flags for better GUI compatibility and network access
 eval "google-chrome-stable \
   $EXTENSION_ARGS \
   --no-sandbox --disable-setuid-sandbox \
@@ -193,6 +194,9 @@ eval "google-chrome-stable \
   --disable-component-update \
   --no-first-run \
   --no-default-browser-check \
+  --disable-web-security \
+  --disable-features=VizDisplayCompositor \
+  --allow-running-insecure-content \
   --display=:99 \
   chrome-extension://infppggnoaenmfagbfknfkancpbljcca/newtab.html \
   >/tmp/chrome.log 2>&1 &"
@@ -230,10 +234,24 @@ if [ $COUNTER -ge $TIMEOUT ]; then
   echo "❌ Chrome DevTools not accessible after $TIMEOUT seconds"
   echo "Chrome log contents:"
   tail -20 /tmp/chrome.log
+  exit 1
 fi
 
+# Create a health check endpoint
+echo "🏥 Creating health check endpoint..."
+cat > /tmp/health-status.json << EOF
+{
+  "status": "healthy",
+  "chrome_pid": $CHROME_PID,
+  "devtools_url": "http://chrome-gui:9222",
+  "vnc_url": "http://chrome-gui:6080",
+  "extensions": "$EXTENSION_LIST",
+  "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+}
+EOF
+
 # Start a debug terminal in the GUI
-xterm -geometry 80x24+50+50 -title "Debug Terminal" -e "bash -c 'echo \"Debug Terminal Ready\"; echo \"Chrome PID: $CHROME_PID\"; echo \"Type exit to close\"; bash'" &
+xterm -geometry 80x24+50+50 -title "Debug Terminal" -e "bash -c 'echo \"Debug Terminal Ready\"; echo \"Chrome PID: $CHROME_PID\"; echo \"Network accessible at: chrome-gui:9222\"; echo \"Type exit to close\"; bash'" &
 
 # Display comprehensive status information
 cat <<EOF
@@ -245,6 +263,7 @@ cat <<EOF
 🔧 DevTools:          http://localhost:9222
 📁 Chrome Profile:    $CHROME_PROFILE_DIR
 🎯 Display:           :99
+🔗 Network Access:    chrome-gui:9222 (for other containers)
 
 📦 EXTENSIONS LOADED:
 EOF
@@ -285,10 +304,17 @@ cat <<EOF
   5. Use Automa for workflow automation
   6. Access Chrome DevTools at http://localhost:9222
 
+🔗 NETWORK CONNECTIVITY:
+  - Airflow DAGs can connect to: http://chrome-gui:9222
+  - Other containers can use: chrome-gui:9222
+  - Environment variables are set: CHROME_DEBUG_URL, CHROME_VNC_URL
+  - Health check available at: /tmp/health-status.json
+
 🔄 TROUBLESHOOTING:
   - If GUI is not visible, check log files above
   - If extensions don't work, restart Chrome manually
   - If VNC connection fails, check x11vnc.log
+  - If network access fails, check Docker network configuration
   - Debug terminal is available in the GUI
 
 ==============================================
@@ -300,6 +326,23 @@ if [ "$1" = "--logs" ]; then
     tail -f /tmp/chrome.log /tmp/x11vnc.log /tmp/xvfb.log
 fi
 
-# Keep the script running
+# Keep the script running and periodically update health status
 echo "🏃 Script running... Press Ctrl+C to stop"
-tail -f /dev/null
+while true; do
+    if pgrep -f "chrome" >/dev/null; then
+        cat > /tmp/health-status.json << EOF
+{
+  "status": "healthy",
+  "chrome_pid": $CHROME_PID,
+  "devtools_url": "http://chrome-gui:9222",
+  "vnc_url": "http://chrome-gui:6080",
+  "extensions": "$EXTENSION_LIST",
+  "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+}
+EOF
+    else
+        echo "❌ Chrome process died, attempting restart..."
+        exec "$0" "$@"
+    fi
+    sleep 60
+done

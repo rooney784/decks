@@ -1,13 +1,15 @@
 const puppeteer = require('puppeteer-core');
-const { Client } = require('pg');
 const { MongoClient } = require('mongodb');
+const { Client } = require('pg');
 const fs = require('fs/promises');
 const path = require('path');
 const dns = require('dns').promises;
 require('dotenv').config();
 
-// MongoDB URI from environment
+// Configuration
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://admin:admin123@mongodb:27017/messages_db?authSource=admin';
+const CHROME_DEBUG_URL = process.env.CHROME_DEBUG_URL || 'http://chrome-gui:9222';
+const CHROME_VNC_URL = process.env.CHROME_VNC_URL || 'http://chrome-gui:6080';
 
 // Helper functions
 async function canResolve(hostname) {
@@ -35,32 +37,93 @@ async function connectWithRetry(config, retries = 5, delayMs = 2000) {
   }
 }
 
-// Enhanced workflow import and execution function - now fetches from MongoDB
+// Connect to existing Chrome instance via Chrome GUI
+async function connectToChrome() {
+  console.log(`🔗 Connecting to Chrome GUI at ${CHROME_DEBUG_URL}`);
+  console.log(`🖥️ VNC access available at ${CHROME_VNC_URL}`);
+  
+  try {
+    const browser = await puppeteer.connect({
+      browserURL: CHROME_DEBUG_URL,
+      defaultViewport: null,
+    });
+    
+    // Verify connection
+    const version = await browser.version();
+    console.log(`✅ Connected to Chrome GUI: ${version}`);
+    
+    return browser;
+  } catch (error) {
+    console.error(`❌ Failed to connect to Chrome GUI at ${CHROME_DEBUG_URL}`);
+    console.error(`Check if Chrome GUI container is running and accessible`);
+    console.error(`VNC interface should be available at: ${CHROME_VNC_URL}`);
+    throw error;
+  }
+}
+
+// Find or create Automa dashboard page
+async function getAutomaDashboard(browser) {
+  const pages = await browser.pages();
+  
+  // Look for existing Automa dashboard
+  let automaPage = pages.find(page => {
+    const url = page.url();
+    return url.includes('/newtab.html') || url.includes('automa') || url.includes('infppggnoaenmfagbfknfkancpbljcca');
+  });
+  
+  if (automaPage) {
+    console.log(`✅ Found existing Automa dashboard: ${automaPage.url()}`);
+    return automaPage;
+  }
+  
+  // Create new Automa dashboard page
+  console.log('📂 Creating new Automa dashboard...');
+  automaPage = await browser.newPage();
+  
+  // Try common Automa extension URLs
+  const automaUrls = [
+    'chrome-extension://infppggnoaenmfagbfknfkancpbljcca/newtab.html',
+    'chrome-extension://infppggnoaenmfagbfknfkancpbljcca/dashboard.html',
+    'chrome://extensions/', // Fallback to extensions page
+  ];
+  
+  for (const url of automaUrls) {
+    try {
+      console.log(`🔄 Trying to navigate to: ${url}`);
+      await automaPage.goto(url, { waitUntil: 'domcontentloaded', timeout: 10000 });
+      
+      // Check if page loaded successfully
+      const title = await automaPage.title();
+      console.log(`📄 Page title: ${title}`);
+      
+      if (title.toLowerCase().includes('automa') || url.includes('newtab.html')) {
+        console.log('✅ Successfully loaded Automa dashboard');
+        return automaPage;
+      }
+    } catch (error) {
+      console.warn(`⚠️ Failed to load ${url}: ${error.message}`);
+    }
+  }
+  
+  throw new Error('Could not load Automa dashboard. Make sure Automa extension is installed and enabled.');
+}
+
+// Import and execute workflows from MongoDB
 async function importAndExecuteWorkflows(browser) {
   console.log('📁 Starting workflow import and execution from MongoDB...');
   
-  let page;
-  const deadline = Date.now() + 60000;
+  // Get Automa dashboard
+  const page = await getAutomaDashboard(browser);
   
-  // First try to find existing Automa dashboard
-  while (!page && Date.now() < deadline) {
-    page = (await browser.pages()).find(p => p.url().includes('/newtab.html'));
-    if (!page) await new Promise(r => setTimeout(r, 1000));
+  // Wait for Automa to fully load
+  try {
+    await page.waitForSelector('#app, .dashboard, [data-testid="dashboard"]', { timeout: 20000 });
+    console.log('✅ Automa dashboard loaded');
+  } catch (error) {
+    console.warn('⚠️ Could not detect Automa dashboard elements, proceeding anyway...');
   }
   
-  // If no Automa dashboard found, create a new page and navigate to it
-  if (!page) {
-    console.log('📂 No Automa dashboard found, creating new tab...');
-    page = await browser.newPage();
-    await page.goto('chrome-extension://infppggnoaenmfagbfknfkancpbljcca/newtab.html', {
-      waitUntil: 'domcontentloaded',
-      timeout: 30000
-    });
-  }
-  
-  await page.waitForSelector('#app', { timeout: 20000 });
-
-  // Fetch workflows from MongoDB instead of local files
+  // Fetch workflows from MongoDB
   console.log('🔄 Fetching workflows from MongoDB...');
   const mongoClient = new MongoClient(MONGO_URI);
   let workflows = [];
@@ -72,29 +135,21 @@ async function importAndExecuteWorkflows(browser) {
     const db = mongoClient.db();
     const workflowsCollection = db.collection('workflows');
     
-    // Fetch workflows that have URLs (updated from previous extraction)
-    const mongoWorkflows = await workflowsCollection.find({ 
-      url: { $exists: true },
-      // Optionally filter by recent updates
-      // updated_at: { $exists: true }
-    }).sort({ updated_at: -1 }).toArray();
-    
-    console.log(`📊 Found ${mongoWorkflows.length} workflows with URLs in MongoDB`);
+    // Fetch workflows
+    const mongoWorkflows = await workflowsCollection.find({}).sort({ updated_at: -1 }).toArray();
+    console.log(`📊 Found ${mongoWorkflows.length} workflows in MongoDB`);
     
     // Convert MongoDB documents to Automa workflow format
     for (const mongoWf of mongoWorkflows) {
-      // If the workflow document contains the actual workflow data
       if (mongoWf.workflow_data) {
         workflows.push(mongoWf.workflow_data);
-        console.log(`✅ Loaded workflow from MongoDB: ${mongoWf.workflow_data.name || mongoWf._id}`);
-      } 
-      // If we need to construct a basic workflow structure
-      else {
+        console.log(`✅ Loaded workflow: ${mongoWf.workflow_data.name || mongoWf._id}`);
+      } else {
+        // Create basic workflow structure
         const basicWorkflow = {
           id: mongoWf._id.toString(),
           name: mongoWf.name || `Workflow-${mongoWf._id}`,
-          url: mongoWf.url,
-          // Add other necessary workflow properties
+          url: mongoWf.url || '',
           nodes: mongoWf.nodes || [],
           edges: mongoWf.edges || [],
           settings: mongoWf.settings || {},
@@ -102,14 +157,13 @@ async function importAndExecuteWorkflows(browser) {
           updatedAt: mongoWf.updated_at || new Date().toISOString()
         };
         workflows.push(basicWorkflow);
-        console.log(`✅ Constructed workflow from MongoDB: ${basicWorkflow.name}`);
+        console.log(`✅ Constructed workflow: ${basicWorkflow.name}`);
       }
     }
     
   } catch (mongoError) {
     console.error('❌ Failed to fetch workflows from MongoDB:', mongoError.message);
-    console.log('⚠️ Falling back to empty workflow list');
-    workflows = [];
+    return 0;
   } finally {
     await mongoClient.close();
   }
@@ -120,406 +174,308 @@ async function importAndExecuteWorkflows(browser) {
   }
 
   // Import workflows into Automa
+  console.log('📥 Importing workflows into Automa...');
   for (const wf of workflows) {
     try {
-      await page.evaluate(wf => {
-        chrome.storage.local.get('workflows', res => {
-          const arr = Array.isArray(res.workflows) ? res.workflows : [];
-          if (!arr.find(w => w.id === wf.id)) {
-            arr.unshift(wf);
-            chrome.storage.local.set({ workflows: arr });
-          }
+      await page.evaluate(workflow => {
+        return new Promise((resolve) => {
+          chrome.storage.local.get('workflows', (result) => {
+            const existingWorkflows = Array.isArray(result.workflows) ? result.workflows : [];
+            
+            // Check if workflow already exists
+            const existingIndex = existingWorkflows.findIndex(w => w.id === workflow.id);
+            
+            if (existingIndex >= 0) {
+              // Update existing workflow
+              existingWorkflows[existingIndex] = workflow;
+              console.log(`Updated existing workflow: ${workflow.name}`);
+            } else {
+              // Add new workflow
+              existingWorkflows.unshift(workflow);
+              console.log(`Added new workflow: ${workflow.name}`);
+            }
+            
+            chrome.storage.local.set({ workflows: existingWorkflows }, () => {
+              resolve();
+            });
+          });
         });
       }, wf);
-      console.log(`✅ Workflow imported to Automa: ${wf.name}`);
+      
+      console.log(`✅ Workflow imported: ${wf.name}`);
     } catch (importError) {
       console.warn(`⚠️ Failed to import workflow ${wf.name}:`, importError.message);
     }
   }
 
-  // Reload dashboard
-  await Promise.all([
-    page.reload({ waitUntil: ['domcontentloaded', 'networkidle0'] }),
-    page.waitForNavigation({ waitUntil: ['domcontentloaded', 'networkidle0'] }),
-  ]);
-
-  console.log('🔄 Dashboard reloaded');
+  // Reload dashboard to show new workflows
+  console.log('🔄 Reloading Automa dashboard...');
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await new Promise(r => setTimeout(r, 3000)); // Give time to reload
 
   // Execute workflows
+  console.log('▶️ Starting workflow execution...');
+  let executedCount = 0;
+  
   for (const wf of workflows) {
-    console.log(`▶️ Executing workflow: ${wf.name} (URL: ${wf.url || 'N/A'})`);
-    await page.evaluate(async (workflowId) => {
-      const all = await chrome.storage.local.get('workflows');
-      const wfObj = (all.workflows || []).find(w => w.id === workflowId);
-      if (!wfObj) {
-        console.error('Workflow not found:', workflowId);
-        return;
+    try {
+      console.log(`🚀 Executing workflow: ${wf.name}`);
+      
+      const executionResult = await page.evaluate(async (workflowId) => {
+        return new Promise((resolve) => {
+          chrome.storage.local.get('workflows', (result) => {
+            const workflows = result.workflows || [];
+            const workflow = workflows.find(w => w.id === workflowId);
+            
+            if (!workflow) {
+              resolve({ success: false, error: 'Workflow not found' });
+              return;
+            }
+            
+            // Execute workflow
+            chrome.runtime.sendMessage({
+              name: 'background--workflow:execute',
+              data: { 
+                ...workflow, 
+                options: { data: { variables: {} } } 
+              },
+            }, (response) => {
+              resolve({ success: true, response });
+            });
+          });
+        });
+      }, wf.id);
+      
+      if (executionResult.success) {
+        console.log(`✅ Workflow executed successfully: ${wf.name}`);
+        executedCount++;
+      } else {
+        console.warn(`⚠️ Workflow execution failed: ${wf.name} - ${executionResult.error}`);
       }
-      chrome.runtime.sendMessage({
-        name: 'background--workflow:execute',
-        data: { ...wfObj, options: { data: { variables: {} } } },
-      });
-    }, wf.id);
-    await new Promise(r => setTimeout(r, 2000));
+      
+      // Wait between executions
+      await new Promise(r => setTimeout(r, 2000));
+      
+    } catch (execError) {
+      console.warn(`⚠️ Error executing workflow ${wf.name}:`, execError.message);
+    }
   }
 
-  console.log('✅ All workflows dispatched – check Automa logs.');
-  return workflows.length;
+  console.log(`✅ Workflow execution completed: ${executedCount}/${workflows.length} workflows executed`);
+  return executedCount;
 }
 
-// Enhanced link extraction function with automatic navigation and MongoDB integration
-async function extractLinksFromPage(browser, testMode = false, targetUrl = null) {
-  console.log('🔗 Starting link extraction...');
+// Enhanced link extraction from current pages
+async function extractLinksFromPages(browser, testMode = false) {
+  console.log('🔗 Starting link extraction from browser pages...');
   
   const pages = await browser.pages();
-  
-  // First, try to find Twitter/X pages specifically
-  let page = pages.find(p => {
-    const u = p.url();
-    return u && (u.includes('twitter.com') || u.includes('x.com'));
+  const validPages = pages.filter(page => {
+    const url = page.url();
+    return url && 
+           !url.includes('chrome://') && 
+           !url.includes('chrome-extension://') && 
+           !url.includes('chrome-gui:9222') && 
+           !url.includes('chrome-gui:6080') &&
+           url !== 'about:blank' && 
+           url.startsWith('http');
   });
   
-  // If no Twitter/X page found, look for any content page
-  if (!page) {
-    page = pages.find(p => {
-      const u = p.url();
-      return u &&
-        !u.includes('chrome://') &&
-        !u.includes('chrome-extension://') &&
-        !u.includes('newtab.html') &&
-        !u.includes('localhost:9222') &&
-        u !== 'about:blank' &&
-        u.startsWith('http');
-    });
+  console.log(`📄 Found ${validPages.length} valid pages for extraction`);
+  
+  if (validPages.length === 0) {
+    console.log('⚠️ No valid pages found for link extraction');
+    return null;
   }
-
-  // If still no suitable page found, create one and navigate to a default URL
-  if (!page) {
-    console.log('📄 No suitable page found, creating new page...');
-    page = await browser.newPage();
-    
-    // Use provided target URL or default to a sample website
-    const urlToVisit = targetUrl || process.env.DEFAULT_EXTRACTION_URL || 'https://example.com';
-    
-    console.log(`🌐 Navigating to: ${urlToVisit}`);
+  
+  const allExtracted = [];
+  
+  for (const page of validPages) {
     try {
-      await page.goto(urlToVisit, { 
-        waitUntil: 'networkidle2', 
-        timeout: 30000 
+      console.log(`🔍 Extracting from: ${page.url()}`);
+      
+      const extracted = await page.evaluate(() => {
+        const links = [];
+        const anchors = document.querySelectorAll('a[href]');
+        
+        anchors.forEach((anchor, i) => {
+          const href = anchor.href;
+          const text = (anchor.textContent.trim() || anchor.title || anchor.getAttribute('aria-label') || '').substring(0, 200);
+          
+          if (href && href !== '#' && !href.startsWith('javascript:')) {
+            try {
+              const url = new URL(href);
+              links.push({
+                index: i + 1,
+                url: href,
+                text,
+                isExternal: !href.startsWith(window.location.origin),
+                domain: url.hostname,
+                type: 'link'
+              });
+            } catch (e) {
+              // Skip invalid URLs
+            }
+          }
+        });
+        
+        return {
+          pageUrl: window.location.href,
+          pageTitle: document.title,
+          domain: window.location.hostname,
+          timestamp: new Date().toISOString(),
+          totalLinks: links.length,
+          links
+        };
       });
       
-      // Wait a bit more for dynamic content
-      await new Promise(r => setTimeout(r, 3000));
+      if (extracted.links.length > 0) {
+        allExtracted.push(extracted);
+        console.log(`✅ Extracted ${extracted.links.length} links from ${extracted.pageTitle}`);
+      }
       
     } catch (error) {
-      console.error(`❌ Failed to navigate to ${urlToVisit}:`, error.message);
-      
-      // Fallback to a more reliable site
-      const fallbackUrl = 'https://httpbin.org/html';
-      console.log(`🔄 Trying fallback URL: ${fallbackUrl}`);
-      
-      try {
-        await page.goto(fallbackUrl, { 
-          waitUntil: 'networkidle2', 
-          timeout: 30000 
-        });
-      } catch (fallbackError) {
-        console.error('❌ Fallback navigation also failed:', fallbackError.message);
-        return null;
-      }
+      console.warn(`⚠️ Failed to extract from page: ${error.message}`);
     }
   }
-
-  console.log(`🔍 Extracting from: ${page.url()}`);
-
-  const extracted = await page.evaluate(() => {
-    const links = [];
-    const anchors = document.querySelectorAll('a[href]');
-    
-    console.log(`Found ${anchors.length} anchor elements`);
-    
-    anchors.forEach((anchor, i) => {
-      const href = anchor.href;
-      const text = (anchor.textContent.trim() || anchor.title || anchor.getAttribute('aria-label') || '').substring(0, 200);
-      
-      if (href && href !== '#' && !href.startsWith('javascript:')) {
-        try {
-          const url = new URL(href);
-          links.push({
-            index: i + 1,
-            url: href,
-            text,
-            isExternal: !href.startsWith(window.location.origin),
-            domain: url.hostname,
-            type: 'link',
-            isTwitterLink: url.hostname.includes('twitter.com') || url.hostname.includes('x.com')
-          });
-        } catch (e) {
-          console.warn('Invalid URL:', href);
-        }
-      }
-    });
-    
-    // Also get images
-    const images = document.querySelectorAll('img[src]');
-    console.log(`Found ${images.length} image elements`);
-    
-    images.forEach((img, i) => {
-      const src = img.src;
-      const text = ((img.alt || img.title) || '').substring(0, 200);
-      if (src && !src.startsWith('data:')) {
-        try {
-          const url = new URL(src);
-          links.push({
-            index: anchors.length + i + 1,
-            url: src,
-            text,
-            isExternal: !src.startsWith(window.location.origin),
-            domain: url.hostname,
-            type: 'image'
-          });
-        } catch (e) {
-          console.warn('Invalid image URL:', src);
-        }
-      }
-    });
-    
-    return {
-      pageUrl: window.location.href,
-      pageTitle: document.title,
-      domain: window.location.hostname,
-      timestamp: new Date().toISOString(),
-      totalAnchors: anchors.length,
-      totalImages: images.length,
-      links
-    };
-  });
-
-  console.log(`✅ Extracted from: ${extracted.pageUrl}`);
-  console.log(`📊 Page stats: ${extracted.totalAnchors} anchors, ${extracted.totalImages} images`);
-  console.log(`🔗 Found ${extracted.links.length} valid links`);
   
-  // Show breakdown by type
-  const linkTypes = extracted.links.reduce((acc, link) => {
-    acc[link.type] = (acc[link.type] || 0) + 1;
-    return acc;
-  }, {});
-  console.log(`📈 Link breakdown:`, linkTypes);
-  
-  // Show Twitter-specific links if any
-  const twitterLinks = extracted.links.filter(l => l.isTwitterLink);
-  if (twitterLinks.length > 0) {
-    console.log(`🐦 Found ${twitterLinks.length} Twitter/X links`);
+  if (allExtracted.length === 0) {
+    console.log('⚠️ No links extracted from any page');
+    return null;
   }
-
-  // Always save JSON for debugging
-  await fs.writeFile(path.join(__dirname, 'extract_test.json'), JSON.stringify(extracted, null, 2));
-  console.log(`💾 JSON exported to ${path.join(__dirname, 'extract_test.json')}`);
-
+  
+  // Combine all extracted data
+  const combinedData = {
+    timestamp: new Date().toISOString(),
+    totalPages: allExtracted.length,
+    totalLinks: allExtracted.reduce((sum, page) => sum + page.links.length, 0),
+    pages: allExtracted,
+    allLinks: allExtracted.flatMap(page => page.links)
+  };
+  
+  console.log(`📊 Total extraction: ${combinedData.totalLinks} links from ${combinedData.totalPages} pages`);
+  
   if (testMode) {
-    console.log('🧪 Test mode: skipping DB insert, CSV export, and MongoDB update');
-    return extracted;
+    console.log('🧪 Test mode: saving results to file only');
+    await fs.writeFile('extracted_links_test.json', JSON.stringify(combinedData, null, 2));
+    return combinedData;
   }
-
-  // Database operations (only if links were found)
-  if (extracted.links.length > 0) {
-    // PostgreSQL operations
-    const envUrl = process.env.DATABASE_URL;
-    if (!envUrl) throw new Error('DATABASE_URL not set in .env');
-    const dbUrl = new URL(envUrl);
-    const preferredHost = process.env.DB_HOST || dbUrl.hostname;
-    const can = await canResolve(preferredHost);
-    if (!can) {
-      console.warn(`⚠️ Cannot resolve "${preferredHost}", switching to "localhost"`);
-      dbUrl.hostname = 'localhost';
-    } else {
-      dbUrl.hostname = preferredHost;
-    }
-
-    const client = await connectWithRetry({ connectionString: dbUrl.toString() });
-
-    for (const l of extracted.links) {
-      await client.query(
-        `INSERT INTO tweets_scraped (link) VALUES ($1) ON CONFLICT DO NOTHING`,
-        [l.url]
-      );
-    }
-    await client.end();
-    console.log(`✅ URLs inserted into tweets_scraped (${extracted.links.length})`);
-
-    // File exports
-    const outDir = path.resolve(__dirname, 'extracted-links');
-    await fs.mkdir(outDir, { recursive: true });
-    const ts = extracted.timestamp.replace(/[:.]/g, '-');
-    const base = `${extracted.domain}_${ts}`;
-    await fs.writeFile(path.join(outDir, `${base}.json`), JSON.stringify(extracted, null, 2));
-
-    const escapeCsv = s => (/[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s);
-    const rows = [['Index','URL','Text','Type','Domain','IsExternal']];
-    extracted.links.forEach(l => rows.push([l.index, escapeCsv(l.url), escapeCsv(l.text), l.type, escapeCsv(l.domain), l.isExternal]));
-    await fs.writeFile(path.join(outDir, `${base}.csv`), rows.map(r => r.join(',')).join('\n'));
-    console.log(`📊 CSV saved: ${path.join(outDir, `${base}.csv`)}`);
-
-    // MongoDB workflow update operations
-    console.log('🔄 Starting MongoDB workflow updates...');
-    const mongoClient = new MongoClient(MONGO_URI);
-    
+  
+  // Save to database if not in test mode
+  if (process.env.DATABASE_URL) {
     try {
-      await mongoClient.connect();
-      console.log('✅ Connected to MongoDB');
+      const dbUrl = new URL(process.env.DATABASE_URL);
+      const client = await connectWithRetry({ connectionString: dbUrl.toString() });
       
-      const db = mongoClient.db(); // defaults to messages_db from URI
-      const workflowsCollection = db.collection('workflows');
-      const timestamp = new Date().toISOString();
-      
-      let updatedCount = 0;
-      
-      for (const l of extracted.links) {
-        const result = await workflowsCollection.updateOne(
-          { url: { $exists: false } }, // update only if url is missing
-          { 
-            $set: { 
-              url: l.url, 
-              updated_at: timestamp,
-              link_text: l.text,
-              link_domain: l.domain,
-              link_type: l.type,
-              is_external: l.isExternal
-            } 
-          },
-          { sort: { created_at: -1 } } // update newest first
+      for (const link of combinedData.allLinks) {
+        await client.query(
+          'INSERT INTO tweets_scraped (link) VALUES ($1) ON CONFLICT DO NOTHING',
+          [link.url]
         );
-        
-        if (result.modifiedCount > 0) {
-          updatedCount++;
-          console.log(`📝 Updated workflow with URL: ${l.url.substring(0, 60)}...`);
-        }
       }
       
-      console.log(`✅ Updated ${updatedCount} MongoDB workflows with URLs`);
-      
-      // Optional: Log total workflows without URLs remaining
-      const remainingCount = await workflowsCollection.countDocuments({ url: { $exists: false } });
-      console.log(`📊 Workflows still without URLs: ${remainingCount}`);
-      
-    } catch (mongoError) {
-      console.error('❌ Failed to update MongoDB workflows:', mongoError.message);
-    } finally {
-      await mongoClient.close();
-      console.log('🔌 MongoDB connection closed');
+      await client.end();
+      console.log(`✅ Saved ${combinedData.totalLinks} links to database`);
+    } catch (dbError) {
+      console.error('❌ Failed to save to database:', dbError.message);
     }
-
-  } else {
-    console.log('⚠️ No links found, skipping database, file, and MongoDB operations');
   }
-
-  return extracted;
+  
+  return combinedData;
 }
 
 // Main execution function
-async function run() {
+async function main() {
   const args = process.argv.slice(2);
   const testMode = args.includes('--test');
   const workflowOnly = args.includes('--workflow-only');
   const extractOnly = args.includes('--extract-only');
+  const help = args.includes('--help');
   
-  // Get target URL from command line arguments
-  const urlArgIndex = args.findIndex(arg => arg === '--url');
-  const targetUrl = urlArgIndex !== -1 && args[urlArgIndex + 1] ? args[urlArgIndex + 1] : null;
-  
-  console.log('🚀 Starting integrated script...');
-  console.log(`Mode: ${testMode ? 'TEST' : 'PRODUCTION'}`);
-  if (targetUrl) {
-    console.log(`Target URL: ${targetUrl}`);
+  if (help) {
+    console.log(`
+Usage: node script.js [options]
+
+Options:
+  --test              Run in test mode (no database operations)
+  --workflow-only     Only execute workflows
+  --extract-only      Only extract links
+  --help              Show this help
+
+Environment Variables:
+  MONGODB_URI         MongoDB connection string
+  DATABASE_URL        PostgreSQL connection string
+  CHROME_DEBUG_URL    Chrome GUI debug URL (default: http://chrome-gui:9222)
+  CHROME_VNC_URL      Chrome GUI VNC URL (default: http://chrome-gui:6080)
+
+Examples:
+  node script.js                    # Run both workflows and extraction
+  node script.js --test             # Test mode (no database saves)
+  node script.js --workflow-only    # Only execute workflows
+  node script.js --extract-only     # Only extract links
+    `);
+    return;
   }
   
-  const browser = await puppeteer.connect({
-    browserURL: 'http://localhost:9222',
-    defaultViewport: null,
-  });
-
+  console.log('🚀 Starting workflow and extraction script...');
+  console.log(`Mode: ${testMode ? 'TEST' : 'PRODUCTION'}`);
+  console.log(`Chrome GUI Debug: ${CHROME_DEBUG_URL}`);
+  console.log(`Chrome GUI VNC: ${CHROME_VNC_URL}`);
+  
+  let browser;
+  
   try {
+    browser = await connectToChrome();
+    
     let workflowCount = 0;
     let extractedData = null;
-
-    // Execute workflows (unless extract-only mode)
+    
+    // Execute workflows
     if (!extractOnly) {
       try {
         workflowCount = await importAndExecuteWorkflows(browser);
         console.log(`✅ Workflow phase completed: ${workflowCount} workflows processed`);
         
-        // Wait a bit for workflows to potentially load new pages
         if (workflowCount > 0) {
-          console.log('⏳ Waiting for workflows to complete before extraction...');
-          await new Promise(r => setTimeout(r, 8000));
+          console.log('⏳ Waiting for workflows to load pages...');
+          await new Promise(r => setTimeout(r, 10000));
         }
       } catch (error) {
         console.error('❌ Workflow phase failed:', error.message);
-        if (workflowOnly) {
-          throw error;
-        }
-        console.log('⚠️ Continuing with extraction phase...');
+        if (workflowOnly) throw error;
       }
     }
-
-    // Extract links (unless workflow-only mode)
+    
+    // Extract links
     if (!workflowOnly) {
       try {
-        extractedData = await extractLinksFromPage(browser, testMode, targetUrl);
-        if (extractedData) {
-          console.log(`✅ Extraction phase completed: ${extractedData.links.length} links found`);
-        } else {
-          console.log('⚠️ Extraction phase completed but no data extracted');
-        }
+        extractedData = await extractLinksFromPages(browser, testMode);
+        console.log(`✅ Extraction phase completed`);
       } catch (error) {
         console.error('❌ Extraction phase failed:', error.message);
-        if (extractOnly) {
-          throw error;
-        }
+        if (extractOnly) throw error;
       }
     }
-
+    
     // Summary
     console.log('\n📋 EXECUTION SUMMARY:');
-    console.log(`   Workflows processed: ${workflowCount}`);
-    console.log(`   Links extracted: ${extractedData ? extractedData.links.length : 'N/A'}`);
+    console.log(`   Chrome GUI Debug: ${CHROME_DEBUG_URL}`);
+    console.log(`   Chrome GUI VNC: ${CHROME_VNC_URL}`);
+    console.log(`   Workflows executed: ${workflowCount}`);
+    console.log(`   Links extracted: ${extractedData ? extractedData.totalLinks : 'N/A'}`);
+    console.log(`   Pages processed: ${extractedData ? extractedData.totalPages : 'N/A'}`);
     console.log(`   Test mode: ${testMode ? 'YES' : 'NO'}`);
     
+  } catch (error) {
+    console.error('❌ Fatal error:', error.message);
+    process.exit(1);
   } finally {
-    await browser.disconnect();
-    console.log('🔚 Browser disconnected');
+    if (browser) {
+      await browser.disconnect();
+      console.log('🔚 Disconnected from Chrome GUI');
+    }
   }
 }
 
-// Execute with error handling
-run().catch(err => {
-  console.error('❌ Fatal error:', err);
-  process.exit(1);
-});
-
-// Help text
-if (process.argv.includes('--help')) {
-  console.log(`
-Usage: node integrated-script.js [options]
-
-Options:
-  --test                Run in test mode (skip database operations)
-  --workflow-only       Only execute workflows, skip link extraction
-  --extract-only        Only extract links, skip workflow execution
-  --url <URL>          Navigate to specific URL for extraction
-  --help               Show this help message
-
-Environment Variables:
-  DEFAULT_EXTRACTION_URL   Default URL to visit if no pages are found
-  DATABASE_URL            PostgreSQL connection string
-  MONGODB_URI             MongoDB connection string (default: mongodb://admin:admin123@mongodb:27017/messages_db?authSource=admin)
-
-Examples:
-  node integrated-script.js                           # Run both phases in production mode
-  node integrated-script.js --test                    # Run both phases in test mode
-  node integrated-script.js --workflow-only           # Only import and execute workflows
-  node integrated-script.js --extract-only            # Only extract links from current page
-  node integrated-script.js --extract-only --url https://twitter.com  # Extract from specific URL
-  `);
-  process.exit(0);
-}
+// Run the script
+main().catch(console.error);

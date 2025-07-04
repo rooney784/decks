@@ -35,8 +35,18 @@ RUN chmod +x /usr/local/bin/start-gui.sh
 # Create a separate workspace for development
 RUN mkdir -p /workspace && chmod 777 /workspace
 
+# Create a health check script
+RUN echo '#!/bin/bash\ncurl -sf http://localhost:9222/json/version >/dev/null 2>&1' > /usr/local/bin/health-check.sh && \
+    chmod +x /usr/local/bin/health-check.sh
+
+# Add health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD /usr/local/bin/health-check.sh
+
 # Optional: start container in /workspace but keep /opt/automa built and usable
 WORKDIR /workspace
 
 EXPOSE 6080 9222
+
+# Start GUI and keep container running
 CMD ["/usr/local/bin/start-gui.sh"]

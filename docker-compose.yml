@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   mongodb:
     image: mongo:7.0
@@ -18,7 +20,7 @@ services:
       retries: 10
       start_period: 30s
     networks:
-      - app_network
+      - app-network
     restart: unless-stopped
 
   postgres:
@@ -40,7 +42,7 @@ services:
       retries: 10
       start_period: 30s
     networks:
-      - app_network
+      - app-network
     restart: unless-stopped
 
   airflow-init:
@@ -95,7 +97,7 @@ services:
         airflow users create --username brian --firstname Brian --lastname Kimutai --role Admin --email briankimu97@gmail.com --password kimu
       "
     networks:
-      - app_network
+      - app-network
     restart: "no"
 
   airflow-webserver:
@@ -129,6 +131,8 @@ services:
       - REQUIRED_DIGITS=${REQUIRED_DIGITS:-19}
       - EXCLUDE_TERMS=${EXCLUDE_TERMS:-}
       - AIRFLOW_UID=50000
+      - CHROME_DEBUG_URL=http://chrome-gui:9222
+      - CHROME_VNC_URL=http://chrome-gui:6080
     volumes:
       - ./airflow/dags:/opt/airflow/dags
       - ./src:/opt/airflow/src
@@ -160,7 +164,7 @@ services:
       retries: 3
       start_period: 60s
     networks:
-      - app_network
+      - app-network
     restart: unless-stopped
 
   airflow-scheduler:
@@ -193,6 +197,8 @@ services:
       - REQUIRED_DIGITS=${REQUIRED_DIGITS:-19}
       - EXCLUDE_TERMS=${EXCLUDE_TERMS:-}
       - AIRFLOW_UID=50000
+      - CHROME_DEBUG_URL=http://chrome-gui:9222
+      - CHROME_VNC_URL=http://chrome-gui:6080
     volumes:
       - ./airflow/dags:/opt/airflow/dags
       - ./src:/opt/airflow/src
@@ -222,7 +228,7 @@ services:
       retries: 5
       start_period: 60s
     networks:
-      - app_network
+      - app-network
     restart: unless-stopped
 
   app:
@@ -271,7 +277,7 @@ services:
       retries: 3
       start_period: 60s
     networks:
-      - app_network
+      - app-network
     restart: unless-stopped
 
   db-backup:
@@ -307,7 +313,7 @@ services:
         crond -f
       "
     networks:
-      - app_network
+      - app-network
     restart: unless-stopped
     profiles:
       - backup
@@ -323,7 +329,7 @@ volumes:
     driver: local
 
 networks:
-  app_network:
+  app-network:
     driver: bridge
     driver_opts:
       com.docker.network.bridge.name: app_bridge
