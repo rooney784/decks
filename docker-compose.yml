@@ -22,6 +22,11 @@ services:
     networks:
       - app-network
     restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   postgres:
     image: postgres:15
@@ -44,6 +49,60 @@ services:
     networks:
       - app-network
     restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  chrome-gui:
+    build:
+      context: .devcontainer
+      dockerfile: Dockerfile
+    container_name: chrome-gui
+    ports:
+      - "6080:6080"  # noVNC web interface
+      - "9222:9222"  # Chrome DevTools (direct)
+      - "9223:9223"  # Chrome DevTools (socat forwarded)
+    volumes:
+      - ./workspace:/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ./automa:/opt/automa-config  # For custom Automa configurations
+    environment:
+      - DISPLAY=:99
+      - DBUS_SESSION_BUS_ADDRESS=/dev/null
+      - NO_AT_BRIDGE=1
+      - DISABLE_DBUS=1
+      - LIBGL_ALWAYS_INDIRECT=1
+      - LIBGL_ALWAYS_SOFTWARE=1
+      - QT_X11_NO_MITSHM=1
+      - VNC_RESOLUTION=1920x1080
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - seccomp=unconfined
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/health-check.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   airflow-init:
     build:
@@ -59,11 +118,15 @@ services:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__CORE__PARALLELISM=8
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/messages
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_POOL_SIZE=10
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_POOL_RECYCLE=3600
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_MAX_OVERFLOW=20
       - AIRFLOW__CORE__FERNET_KEY=${AIRFLOW_FERNET_KEY}
       - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=true
       - AIRFLOW__CORE__LOAD_EXAMPLES=false
       - AIRFLOW__WEBSERVER__EXPOSE_CONFIG=true
       - AIRFLOW__LOGGING__LOGGING_LEVEL=INFO
+      - AIRFLOW__CORE__DAGBAG_IMPORT_TIMEOUT=60
       - PYTHONPATH=/opt/airflow/src
       - DATABASE_URL=postgresql://airflow:airflow@postgres:5432/messages
       - MONGODB_URI=mongodb://admin:admin123@mongodb:27017/messages_db?authSource=admin
@@ -91,14 +154,26 @@ services:
         echo 'Setting up log directory permissions...' &&
         mkdir -p /opt/airflow/logs &&
         chmod 777 /opt/airflow/logs &&
+        echo 'Waiting for database to be ready...' &&
+        until pg_isready -h postgres -p 5432 -U airflow; do
+          echo 'Postgres not ready yet. Retrying in 5 seconds...';
+          sleep 5;
+        done &&
         echo 'Initializing Airflow database...' &&
         airflow db init &&
         airflow db upgrade &&
-        airflow users create --username brian --firstname Brian --lastname Kimutai --role Admin --email briankimu97@gmail.com --password kimu
+        echo 'Creating Airflow user...' &&
+        airflow users create --username brian --firstname Brian --lastname Kimutai --role Admin --email briankimu97@gmail.com --password kimu &&
+        echo 'Airflow initialization completed successfully!'
       "
     networks:
       - app-network
     restart: "no"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   airflow-webserver:
     build:
@@ -112,15 +187,24 @@ services:
         condition: service_healthy
       mongodb:
         condition: service_healthy
+      chrome-gui:
+        condition: service_healthy
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__CORE__PARALLELISM=8
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/messages
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_POOL_SIZE=10
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_POOL_RECYCLE=3600
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_MAX_OVERFLOW=20
       - AIRFLOW__CORE__FERNET_KEY=${AIRFLOW_FERNET_KEY}
       - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=true
       - AIRFLOW__CORE__LOAD_EXAMPLES=false
       - AIRFLOW__WEBSERVER__EXPOSE_CONFIG=true
+      - AIRFLOW__WEBSERVER__WORKERS=2
+      - AIRFLOW__WEBSERVER__WORKER_REFRESH_BATCH_SIZE=1
+      - AIRFLOW__WEBSERVER__WORKER_REFRESH_INTERVAL=6000
       - AIRFLOW__LOGGING__LOGGING_LEVEL=INFO
+      - AIRFLOW__CORE__DAGBAG_IMPORT_TIMEOUT=60
       - PYTHONPATH=/opt/airflow/src
       - GEMINI_API_KEY=${GEMINI_API_KEY}
       - AIRFLOW_VAR_MONGODB_URI=mongodb://admin:admin123@mongodb:27017/messages_db?authSource=admin
@@ -154,18 +238,28 @@ services:
           echo 'Database not ready yet. Retrying in 5 seconds...';
           sleep 5;
         done;
-        echo 'Database connection successful!';
+        echo 'Waiting for Chrome GUI to be ready...';
+        until curl -sf http://chrome-gui:9222/json/version > /dev/null; do
+          echo 'Chrome GUI not ready yet. Retrying in 5 seconds...';
+          sleep 5;
+        done;
+        echo 'All dependencies ready. Starting Airflow webserver...';
         airflow webserver
       "
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
       interval: 30s
       timeout: 10s
-      retries: 3
-      start_period: 60s
+      retries: 5
+      start_period: 120s
     networks:
       - app-network
     restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   airflow-scheduler:
     build:
@@ -179,15 +273,21 @@ services:
         condition: service_healthy
       mongodb:
         condition: service_healthy
+      chrome-gui:
+        condition: service_healthy
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__CORE__PARALLELISM=8
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/messages
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_POOL_SIZE=10
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_POOL_RECYCLE=3600
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_MAX_OVERFLOW=20
       - AIRFLOW__CORE__FERNET_KEY=${AIRFLOW_FERNET_KEY}
       - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=true
       - DATABASE_URL=postgresql://airflow:airflow@postgres:5432/messages
       - AIRFLOW__CORE__LOAD_EXAMPLES=false
       - AIRFLOW__LOGGING__LOGGING_LEVEL=INFO
+      - AIRFLOW__CORE__DAGBAG_IMPORT_TIMEOUT=60
       - PYTHONPATH=/opt/airflow/src
       - MONGODB_URI=mongodb://admin:admin123@mongodb:27017/messages_db?authSource=admin
       - GEMINI_API_KEY=${GEMINI_API_KEY}
@@ -218,7 +318,12 @@ services:
           echo 'Database not ready yet. Retrying in 5 seconds...';
           sleep 5;
         done;
-        echo 'Database connection successful!';
+        echo 'Waiting for Chrome GUI to be ready...';
+        until curl -sf http://chrome-gui:9222/json/version > /dev/null; do
+          echo 'Chrome GUI not ready yet. Retrying in 5 seconds...';
+          sleep 5;
+        done;
+        echo 'All dependencies ready. Starting Airflow scheduler...';
         airflow scheduler
       "
     healthcheck:
@@ -226,51 +331,15 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
-      start_period: 60s
+      start_period: 120s
     networks:
       - app-network
     restart: unless-stopped
-
-  chrome-gui:
-    build:
-      context: .devcontainer
-      dockerfile: Dockerfile
-    container_name: chrome-gui
-    ports:
-      - "6080:6080"
-      - "9222:9222"        # Exposed and mapped to host
-    volumes:
-      - ./workspace:/workspace
-    environment:
-      - DISPLAY=:99
-    cap_add:
-      - SYS_ADMIN
-    security_opt:
-      - seccomp=unconfined
-    networks:
-      - app-network
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost:9222/json/version"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 20s
-    restart: unless-stopped
-    command: >
-      bash -c "
-        Xvfb :99 -screen 0 1920x1080x24 & \
-        sleep 2 && \
-        google-chrome \
-          --remote-debugging-port=9222 \
-          --user-data-dir=/tmp/chrome-profile \
-          --disable-dev-shm-usage \
-          --no-sandbox \
-          [other GUI flags] & \
-        sleep 2 && \
-        apt-get update && apt-get install -y socat && \
-        socat TCP-LISTEN:9222,fork TCP:127.0.0.1:9222
-      "
-
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   app:
     build:
@@ -282,6 +351,8 @@ services:
         condition: service_healthy
       mongodb:
         condition: service_healthy
+      chrome-gui:
+        condition: service_healthy
     ports:
       - "8501:8501"
     volumes:
@@ -292,6 +363,7 @@ services:
       - ./extracted-links:/app/extracted-links
       - ./filtered-links:/app/filtered-links
       - ./workflows:/app/workflows
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
     environment:
       - PYTHONPATH=/app
       - STREAMLIT_SERVER_HEADLESS=true
@@ -303,23 +375,38 @@ services:
       - FILTER_LINKS=${FILTER_LINKS:-true}
       - REQUIRED_DIGITS=${REQUIRED_DIGITS:-19}
       - EXCLUDE_TERMS=${EXCLUDE_TERMS:-}
+      - CHROME_DEBUG_URL=http://chrome-gui:9222
+      - CHROME_VNC_URL=http://chrome-gui:6080
     cap_add:
       - SYS_ADMIN
     command: >
       bash -c "
+        echo 'Waiting for Chrome GUI to be ready...';
+        until curl -sf http://chrome-gui:9222/json/version > /dev/null; do
+          echo 'Chrome GUI not ready yet. Retrying in 5 seconds...';
+          sleep 5;
+        done;
+        echo 'Starting Xvfb display server...';
         Xvfb :99 -screen 0 1920x1080x24 -ac +extension GLX +render -noreset &
-        export DISPLAY=:99
+        export DISPLAY=:99;
+        sleep 5;
+        echo 'Starting Streamlit application...';
         streamlit run main.py --server.address=0.0.0.0 --server.port=8501 --server.fileWatcherType=auto
       "
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8501/_stcore/health"]
       interval: 30s
       timeout: 10s
-      retries: 3
-      start_period: 60s
+      retries: 5
+      start_period: 120s
     networks:
       - app-network
     restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   db-backup:
     image: alpine:latest
@@ -342,22 +429,31 @@ services:
       - MONGODB_URI=mongodb://admin:admin123@mongodb:27017/messages_db?authSource=admin
     command: >
       sh -c "
-        apk add --no-cache postgresql-client dcron mongodb-tools &&
+        echo 'Installing backup tools...' &&
+        apk add --no-cache postgresql-client dcron mongodb-tools curl &&
         mkdir -p /backups &&
+        echo 'Setting up backup cron job...' &&
         echo '$$(echo \"$${BACKUP_SCHEDULE:-0 2 * * *}\") /bin/sh -c \"\
           timestamp=$$(date +%Y%m%d_%H%M%S); \
-          pg_dump -U $$POSTGRES_USER -h $$POSTGRES_HOST -p $$POSTGRES_PORT $$POSTGRES_DB > /backups/messages_$$timestamp.sql; \
-          mongodump --uri=$$MONGODB_URI --out=/backups/mongodb_$$timestamp; \
-          find /backups -name \"*.sql\" -mtime +7 -delete; \
-          find /backups -name \"mongodb_*\" -type d -mtime +7 -exec rm -rf {} +; \
-          echo \"Backup completed at $$timestamp\"\"' > /etc/crontabs/root &&
-        crond -f
+          echo \"Starting backup at $$timestamp\"; \
+          pg_dump -U $$POSTGRES_USER -h $$POSTGRES_HOST -p $$POSTGRES_PORT $$POSTGRES_DB > /backups/messages_$$timestamp.sql && \
+          mongodump --uri=$$MONGODB_URI --out=/backups/mongodb_$$timestamp && \
+          find /backups -name \"*.sql\" -mtime +7 -delete && \
+          find /backups -name \"mongodb_*\" -type d -mtime +7 -exec rm -rf {} + 2>/dev/null || true && \
+          echo \"Backup completed successfully at $$timestamp\"\"' > /etc/crontabs/root &&
+        echo 'Starting cron daemon...' &&
+        crond -f -l 2
       "
     networks:
       - app-network
     restart: unless-stopped
     profiles:
       - backup
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 volumes:
   postgres_data:
