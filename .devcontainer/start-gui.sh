@@ -171,16 +171,22 @@ else
     EXTENSION_LIST="No extensions"
 fi
 
+# Kill any existing Chrome processes to prevent conflicts
+echo "🧹 Killing existing Chrome processes..."
+pkill -f "chrome" || true
+sleep 2
+
+# Start Chrome with comprehensive flags for better GUI compatibility and network access
 echo "🚀 Starting Chrome with extensions: $EXTENSION_LIST"
 echo "🌐 Chrome will be accessible to network services at: chrome-gui:9222"
 
-# Start Chrome with comprehensive flags for better GUI compatibility and network access
-eval "google-chrome-stable \
+google-chrome-stable \
   $EXTENSION_ARGS \
   --no-sandbox --disable-setuid-sandbox \
   --disable-gpu --disable-dev-shm-usage \
-  --user-data-dir=\"$CHROME_PROFILE_DIR\" \
-  --remote-debugging-port=9222 --remote-debugging-address=0.0.0.0 \
+  --user-data-dir="$CHROME_PROFILE_DIR" \
+  --remote-debugging-port=9222 \
+  --remote-debugging-address=0.0.0.0 \
   --disable-features=UseOzonePlatform,VizDisplayCompositor,TranslateUI \
   --disable-background-timer-throttling \
   --disable-backgrounding-occluded-windows \
@@ -195,11 +201,10 @@ eval "google-chrome-stable \
   --no-first-run \
   --no-default-browser-check \
   --disable-web-security \
-  --disable-features=VizDisplayCompositor \
   --allow-running-insecure-content \
   --display=:99 \
   chrome-extension://infppggnoaenmfagbfknfkancpbljcca/newtab.html \
-  >/tmp/chrome.log 2>&1 &"
+  >/tmp/chrome.log 2>&1 &
 
 CHROME_PID=$!
 echo "🌐 Chrome PID: $CHROME_PID"
